@@ -3,6 +3,10 @@ from contextlib import closing
 import argparse,json,sqlite3,time,urllib.request,urllib.parse
 from pathlib import Path
 
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
 def check(dbpath,url=None):
     p=Path(dbpath).resolve();result={}
     with closing(sqlite3.connect(p.as_uri()+'?mode=ro',uri=True,timeout=5)) as db, db:
@@ -12,7 +16,7 @@ def check(dbpath,url=None):
         u=urllib.parse.urlsplit(url)
         if u.scheme!='https' or not u.hostname or u.username or u.password:raise ValueError('HTTPS required')
         start=time.monotonic()
-        with urllib.request.urlopen(urllib.parse.urlunsplit((u.scheme,u.netloc,'/api/health','','')),timeout=10) as r:
+        with urllib.request.build_opener(NoRedirect()).open(urllib.parse.urlunsplit((u.scheme,u.netloc,'/api/health','','')),timeout=10) as r:
             data=json.loads(r.read(4096));result['api_ok']=data.get('ok') is True and data.get('ban_sync_configured') is True
         result['api_ms']=round((time.monotonic()-start)*1000)
     return result

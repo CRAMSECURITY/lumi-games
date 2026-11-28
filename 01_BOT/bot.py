@@ -2807,9 +2807,13 @@ async def delete_profile(callback: CallbackQuery, state: FSMContext):
             db.execute("DELETE FROM arena_season_scores WHERE user_id=?", (user_id,))
             db.execute("DELETE FROM duo_quest_rewards WHERE user_a=? OR user_b=?", (user_id,user_id))
             # Право на удаление: не оставляем игровой прогресс, журналы и медиа-ID.
-            for table in ("lumi_pets", "lumi_pet_colors", "lumi_pet_events",
-                          "arena_heroes", "arena_collection", "arena_achievements", "arena_season_scores"):
-                db.execute(f"DELETE FROM {table} WHERE user_id=?", (user_id,))
+            db.execute("DELETE FROM lumi_pets WHERE user_id=?", (user_id,))
+            db.execute("DELETE FROM lumi_pet_colors WHERE user_id=?", (user_id,))
+            db.execute("DELETE FROM lumi_pet_events WHERE user_id=?", (user_id,))
+            db.execute("DELETE FROM arena_heroes WHERE user_id=?", (user_id,))
+            db.execute("DELETE FROM arena_collection WHERE user_id=?", (user_id,))
+            db.execute("DELETE FROM arena_achievements WHERE user_id=?", (user_id,))
+            db.execute("DELETE FROM arena_season_scores WHERE user_id=?", (user_id,))
             db.execute("DELETE FROM arena_challenges WHERE challenger=? OR defender=?", (user_id,user_id))
             db.execute("DELETE FROM arena_battle_log WHERE winner=? OR loser=?", (user_id,user_id))
             db.execute("DELETE FROM duo_quest_rewards WHERE user_a=? OR user_b=?", (user_id,user_id))
@@ -3525,7 +3529,7 @@ async def pair_answer(callback: CallbackQuery):
         if row[1 if uid==a else 2] is not None:
             await callback.answer("Ты уже ответил(а)")
             return
-        db.execute(f"UPDATE game_sessions SET {'answer_a' if uid==a else 'answer_b'}=? WHERE user_a=? AND user_b=?",(choice,a,b))
+        db.execute("UPDATE game_sessions SET answer_a=? WHERE user_a=? AND user_b=?" if uid==a else "UPDATE game_sessions SET answer_b=? WHERE user_a=? AND user_b=?",(choice,a,b))
         row=db.execute("SELECT answer_a,answer_b FROM game_sessions WHERE user_a=? AND user_b=?",(a,b)).fetchone()
         complete=row[0] is not None and row[1] is not None
         if complete:
@@ -3664,7 +3668,7 @@ async def mystery_answer(callback: CallbackQuery):
         if (aa if uid==a else ab) is not None:
             await callback.answer("Ответ уже принят"); return
         field='answer_a' if uid==a else 'answer_b'
-        db.execute(f"UPDATE mystery_sessions SET {field}=? WHERE id=?",(choice,sid))
+        db.execute("UPDATE mystery_sessions SET answer_a=? WHERE id=?" if field=='answer_a' else "UPDATE mystery_sessions SET answer_b=? WHERE id=?",(choice,sid))
         updated=db.execute("SELECT answer_a,answer_b FROM mystery_sessions WHERE id=?",(sid,)).fetchone()
         complete=updated[0] is not None and updated[1] is not None
         if complete:
@@ -3704,7 +3708,7 @@ async def mystery_reveal(callback: CallbackQuery):
         field='reveal_a' if uid==a else 'reveal_b'
         if (ra if uid==a else rb) is not None:
             await callback.answer("Выбор уже сделан"); return
-        db.execute(f"UPDATE mystery_sessions SET {field}=? WHERE id=?",(v,sid))
+        db.execute("UPDATE mystery_sessions SET reveal_a=? WHERE id=?" if field=='reveal_a' else "UPDATE mystery_sessions SET reveal_b=? WHERE id=?",(v,sid))
         ra,rb=db.execute("SELECT reveal_a,reveal_b FROM mystery_sessions WHERE id=?",(sid,)).fetchone()
         done=(ra==0 or rb==0 or (ra==1 and rb==1))
         if done: db.execute("UPDATE mystery_sessions SET status='closed' WHERE id=?",(sid,))
@@ -3809,7 +3813,7 @@ async def duo_answer(message: Message):
             if (ta if uid==a else tb) is not None:
                 return False, 'Ты уже ответил(а). Ждём партнёра.'
             field='text_a' if uid==a else 'text_b'
-            db.execute(f"UPDATE duo_adventures SET {field}=? WHERE user_a=? AND user_b=?",(text,a,b))
+            db.execute("UPDATE duo_adventures SET text_a=? WHERE user_a=? AND user_b=?" if field=='text_a' else "UPDATE duo_adventures SET text_b=? WHERE user_a=? AND user_b=?",(text,a,b))
             ta,tb=db.execute("SELECT text_a,text_b FROM duo_adventures WHERE user_a=? AND user_b=?",(a,b)).fetchone()
             ready=ta is not None and tb is not None
             if ready: db.execute("UPDATE duo_adventures SET step=step+1,text_a=NULL,text_b=NULL WHERE user_a=? AND user_b=?",(a,b))

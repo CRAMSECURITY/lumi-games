@@ -49,7 +49,7 @@ def toggle_notify(db, uid: int, field: str):
     if field not in {'likes','matches','quiet'}:
         raise ValueError('Invalid setting')
     db.execute('INSERT OR IGNORE INTO lumi_notification_settings(user_id) VALUES(?)',(uid,))
-    db.execute(f'UPDATE lumi_notification_settings SET {field}=1-{field} WHERE user_id=?',(uid,))
+    db.execute({'likes':'UPDATE lumi_notification_settings SET likes=1-likes WHERE user_id=?', 'matches':'UPDATE lumi_notification_settings SET matches=1-matches WHERE user_id=?', 'quiet':'UPDATE lumi_notification_settings SET quiet=1-quiet WHERE user_id=?'}[field],(uid,))
 
 
 def flag_due(db, uid: int) -> bool:

@@ -1,5 +1,4 @@
 aiogram>=3.20.0.post0,<4.0
 python-dotenv>=1.0,<2.0
-Pillow>=12.0,<13.0
-
-cryptography>=46,<48
+Pillow==13.0.0
+cryptography==50.0.2

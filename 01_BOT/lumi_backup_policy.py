@@ -33,7 +33,7 @@ def create_daily_backup(db_path, directory, key, retention=7, now=None):
     if os.name == 'posix':
         if directory.stat().st_uid != os.getuid():
             raise ValueError('Backup directory must belong to service user')
-        os.chmod(directory, 0o700)
+        os.chmod(directory, 0o700)  # nosemgrep: python.lang.security.audit.insecure-file-permissions.insecure-file-permissions
     target = directory / ('lumi_' + now.strftime('%Y-%m-%d') + '.db.enc')
     if not target.exists() and not target.is_symlink():
         with closing(connect_private(db_path)) as source, closing(sqlite3.connect(':memory:')) as destination:

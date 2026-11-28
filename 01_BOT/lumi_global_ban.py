@@ -5,8 +5,9 @@ import asyncio, hashlib, hmac, json, logging, random, time, urllib.request, urll
 
 def init_sync(db):
     db.execute('CREATE TABLE IF NOT EXISTS ban_sync (seq INTEGER PRIMARY KEY AUTOINCREMENT, uid INTEGER NOT NULL, expires INTEGER NOT NULL)')
-    for event, expr, uid in [('INSERT', "COALESCE(CAST(strftime('%s',NEW.expires_at) AS INTEGER),-1)", 'NEW.user_id'), ('UPDATE', "COALESCE(CAST(strftime('%s',NEW.expires_at) AS INTEGER),-1)", 'NEW.user_id'), ('DELETE','0','OLD.user_id')]:
-        db.execute(f'CREATE TRIGGER IF NOT EXISTS ban_sync_{event.lower()} AFTER {event} ON account_suspensions BEGIN INSERT INTO ban_sync(uid,expires) VALUES({uid},{expr}); END')
+    db.execute("CREATE TRIGGER IF NOT EXISTS ban_sync_insert AFTER INSERT ON account_suspensions BEGIN INSERT INTO ban_sync(uid,expires) VALUES(NEW.user_id,COALESCE(CAST(strftime('%s',NEW.expires_at) AS INTEGER),-1)); END")
+    db.execute("CREATE TRIGGER IF NOT EXISTS ban_sync_update AFTER UPDATE ON account_suspensions BEGIN INSERT INTO ban_sync(uid,expires) VALUES(NEW.user_id,COALESCE(CAST(strftime('%s',NEW.expires_at) AS INTEGER),-1)); END")
+    db.execute('CREATE TRIGGER IF NOT EXISTS ban_sync_delete AFTER DELETE ON account_suspensions BEGIN INSERT INTO ban_sync(uid,expires) VALUES(OLD.user_id,0); END')
     db.execute('CREATE TABLE IF NOT EXISTS ban_sync_state (id INTEGER PRIMARY KEY)')
     if db.execute('INSERT OR IGNORE INTO ban_sync_state VALUES(1)').rowcount:
         db.execute("INSERT INTO ban_sync(uid,expires) SELECT user_id,COALESCE(CAST(strftime('%s',expires_at) AS INTEGER),-1) FROM account_suspensions")

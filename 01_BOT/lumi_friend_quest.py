@@ -122,7 +122,7 @@ def register_friend_quest(dp, connect_db):
                     result = 'Ты уже ответил(а). Ждём друга!'
                     updates = None
                 else:
-                    db.execute(f'UPDATE friend_quest_rooms SET {field}=? WHERE token=?', (choice, token))
+                    db.execute('UPDATE friend_quest_rooms SET host_choice=? WHERE token=?' if field == 'host_choice' else 'UPDATE friend_quest_rooms SET guest_choice=? WHERE token=?', (choice, token))
                     hchoice = choice if uid == host else hchoice
                     gchoice = choice if uid == guest else gchoice
                     if hchoice is not None and gchoice is not None:

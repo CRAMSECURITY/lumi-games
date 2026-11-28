@@ -174,13 +174,12 @@ def apply_sanction(db, uid: int, actor_id: int, reason: str, kind: str, scope: s
     if not profile:
         return 'missing'
     table = 'moderation_holds' if scope=='profile' else 'account_suspensions'
-    active = db.execute(f"SELECT 1 FROM {table} WHERE user_id=? "
-                        "AND (expires_at IS NULL OR expires_at > CURRENT_TIMESTAMP)", (uid,)).fetchone()
+    active = db.execute(("SELECT 1 FROM moderation_holds WHERE user_id=? AND (expires_at IS NULL OR expires_at > CURRENT_TIMESTAMP)" if table == "moderation_holds" else "SELECT 1 FROM account_suspensions WHERE user_id=? AND (expires_at IS NULL OR expires_at > CURRENT_TIMESTAMP)"), (uid,)).fetchone()
     if active:
         return 'already'
-    db.execute(f'DELETE FROM {table} WHERE user_id=?', (uid,))
+    db.execute('DELETE FROM moderation_holds WHERE user_id=?' if table == 'moderation_holds' else 'DELETE FROM account_suspensions WHERE user_id=?', (uid,))
     expires = db.execute("SELECT datetime('now', ?)", (duration[1],)).fetchone()[0] if duration[1] else None
-    db.execute(f'INSERT INTO {table}(user_id,reason,moderator_id,expires_at) VALUES (?,?,?,?)',
+    db.execute('INSERT INTO moderation_holds(user_id,reason,moderator_id,expires_at) VALUES (?,?,?,?)' if table == 'moderation_holds' else 'INSERT INTO account_suspensions(user_id,reason,moderator_id,expires_at) VALUES (?,?,?,?)',
                (uid, reason.strip(), actor_id, expires))
     db.execute('INSERT INTO moderation_history(user_id,moderator_id,action,reason,expires_at) VALUES (?,?,?,?,?)',
                (uid,actor_id,'restrict_'+scope,reason.strip(),expires))
