@@ -1,0 +1,2 @@
+# 025.6 DATE PLANNER
+Private local proposal using existing six-place catalog, city, date and time (Europe/Berlin). Explicit copy action; manual selection fallback. No automatic delivery, reservation, server storage, profile linkage or mutual confirmation state. Recipient confirms in personal chat. Draft cleared on closing section/dialog. Rejects invalid/past wall times and DST transition ambiguity. Existing age settings unchanged. No migration. Visual device verification outstanding.

@@ -1,0 +1,2 @@
+# 015.0 release candidate
+Based on 014.5. Release packaging and deployment checklist only; no application code changes. Offline baseline gate: 182 Python tests, 67 JavaScript tests, 30 tool tests; all passed. Online CVE audit and real aiogram/Telegram/Cloudflare integration not verified. Offline gate exit 2 is expected and explicitly does not approve production. No new migrations. Existing D1 migrations 0001–0005 must be applied on staging. Archive unsigned; owner signing required. See root 00_НАЧНИ_ЗДЕСЬ.md for go/no-go checklist.

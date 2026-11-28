@@ -1,0 +1,10 @@
+/* 008.4 Signature: independent sculpted icons, no dock or tile backgrounds. */
+.wrap .tabs{gap:0;padding:8px 8px calc(9px + env(safe-area-inset-bottom,0px));background:transparent;overflow:visible}
+.wrap .tabs button,.wrap .tabs button.on{min-height:74px;padding:8px 0 5px;gap:6px;color:#a89bb8;transition:color .25s ease;scale:1}
+.wrap .tabs button svg.signature-icon,.wrap .tabs button.on svg.signature-icon{width:29px;height:29px;overflow:visible;stroke-width:1.35;transform:translateY(0) scale(1);transition:transform .38s cubic-bezier(.16,1.35,.35,1),filter .3s ease}
+.signature-icon .facet{fill:transparent;transition:fill .25s ease,stroke .25s ease}.signature-icon .shine{fill:transparent;stroke:none;transition:fill .25s ease}.signature-icon .dot{fill:currentColor;stroke:none}
+.wrap .tabs button.on{color:#f1ddff}.wrap .tabs button.on svg.signature-icon{transform:translateY(-3px) scale(1.23);filter:drop-shadow(0 3px 5px #a970ed66);stroke:#ecd0ff}
+.tabs button.on .facet{fill:var(--metal);stroke:#ecd0ff}.tabs button.on .shine{fill:#fff6;stroke:none}.tabs button.on .cut{stroke:#39204e}.tabs button.on .dot{fill:#39204e}
+.wrap .tabs button span{font-size:clamp(10px,2.7vw,12px);font-weight:650;letter-spacing:-.025em;transform:none}.wrap .tabs button.on span{transform:none;color:#f1ddff;font-weight:800}
+.wrap .tabs button:active svg.signature-icon{transform:scale(.88)}
+@media(prefers-reduced-motion:reduce){.wrap .tabs button svg.signature-icon,.signature-icon .facet,.signature-icon .shine{transition:none}}

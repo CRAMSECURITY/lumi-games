@@ -1,0 +1,5 @@
+# 025.9 CITY EXPERIENCE FINAL
+- Quick navigation to city discovery and personal moments; existing signature cards and typography retained.
+- DATE CONNECT has participant-only, explicit block action. Blocking cancels active plans in both directions, hides pair plans and prevents new invites either way; no user IDs exposed. Cancelling is permitted even if the other party is globally banned. Deletion removes block records. No unblock UI or synchronization with bot/business blocks; deleting/recreating an account may remove protection. No claims of physical safety.
+- Apply migration 0014_date_safety.sql before enabling DATE CONNECT. Keep default-off flags and prior rollout requirements. No new payments or notifications. Codes remain private bearer secrets. First meetings in public places advised.
+- Local regression: 97 JS, 228 Python (24 subtests), 30 tool tests passed. No live Telegram, Cloudflare D1, visual device testing or online dependency audit. Owner approval/signature outstanding. Not production approved.

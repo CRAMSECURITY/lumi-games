@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync,statSync} from 'node:fs';import vm from 'node:vm';
+const read=p=>readFileSync(new URL('../public/'+p,import.meta.url),'utf8');
+test('catalog has 21 unique original IDs and both image sizes',()=>{const ctx={window:{}};vm.runInNewContext(read('catalog.js'),ctx);const a=ctx.window.LUMI_CATALOG;assert.equal(a.length,21);assert.equal(new Set(a.map(h=>h.id)).size,21);for(const h of a){assert.ok(Number.isInteger(h.xp));for(const suffix of ['','-s'])assert.ok(statSync(new URL('../public/heroes/'+String(h.id).padStart(2,'0')+suffix+'.webp',import.meta.url)).size<100000)}});
+test('gallery keeps reduced motion and lazy image loading',()=>{assert.match(read('genesis.css'),/prefers-reduced-motion/);assert.match(read('hub.js'),/Коллекционная иллюстрация/);assert.match(read('index.html'),/if\(document.hidden\)stopPoll\(\)/)});

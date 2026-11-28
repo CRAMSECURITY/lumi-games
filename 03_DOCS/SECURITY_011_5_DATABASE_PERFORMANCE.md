@@ -1,0 +1,5 @@
+# 011.5 DATABASE PERFORMANCE
+- Daily Moment candidate filtering uses one SQL statement instead of per-candidate calls. Preserves bilateral gender preferences, adult age, discoverability, active moderation holds, blocks, likes and Python Unicode city matching. Existing score and final recheck unchanged.
+- Four additive indexes on profile_views(target_id), browse_daily(day), lumi_starter_daily(day), support_tickets(status,updated_at). Created idempotently at bot initialization; no D1 migration or data rewrite. Existing SQLite database should be backed up before updating; index creation may briefly lock writes and adds disk/write overhead.
+- Synthetic fixture: 1000 candidates, 7983 SQL statements versus 1 for the candidate filtering step, identical results. EXPLAIN QUERY PLAN confirms all four indexes selected for targeted queries. Not a real-world latency benchmark.
+- 42 selected Python tests, 59 JavaScript tests passed. Telegram integration, full bot suite, real production load and actual latency not verified. Other browsing paths still materialize candidates; no visual changes.

@@ -1,0 +1,26 @@
+............../usr/lib/python3.13/threading.py:281: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7115c2e6b0>
+  def __init__(self, lock=None):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/threading.py:281: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f71150ce2f0>
+  def __init__(self, lock=None):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/threading.py:281: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f71150cdb70>
+  def __init__(self, lock=None):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/threading.py:281: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f71150cea70>
+  def __init__(self, lock=None):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/threading.py:281: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f71150ceb60>
+  def __init__(self, lock=None):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/threading.py:281: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7114d904f0>
+  def __init__(self, lock=None):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/threading.py:281: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7114d905e0>
+  def __init__(self, lock=None):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+............
+----------------------------------------------------------------------
+Ran 26 tests in 0.338s
+
+OK

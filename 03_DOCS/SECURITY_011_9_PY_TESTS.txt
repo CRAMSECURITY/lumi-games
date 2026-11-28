@@ -1,0 +1,13 @@
+....Ban sync delayed: TimeoutError
+Ban sync delayed: TimeoutError
+....Executing <Task pending name='Task-31' coro=<ConcurrencyTests.test_daily_error_releases_lock_before_network() running at /tmp/lumi119/LUMI_011_8_NETWORK_RESILIENCE/01_BOT/test_database_concurrency.py:27> wait_for=<Future pending cb=[_chain_future.<locals>._call_check_cancel() at /usr/lib/python3.13/asyncio/futures.py:384, Task.task_wakeup()] created at /usr/lib/python3.13/asyncio/base_events.py:459> cb=[_run_until_complete_cb() at /usr/lib/python3.13/asyncio/base_events.py:181] created at /usr/lib/python3.13/asyncio/runners.py:100> took 0.115 seconds
+.......................................
+----------------------------------------------------------------------
+Ran 47 tests in 0.648s
+
+OK
+SQL statements old/new: 7983 1
+SEARCH profile_views USING INDEX idx_profile_views_target (target_id=?)
+SEARCH browse_daily USING INDEX idx_browse_daily_day (day<?)
+SEARCH lumi_starter_daily USING INDEX idx_starter_daily_day (day<?)
+SEARCH support_tickets USING COVERING INDEX idx_support_status_updated (status=? AND updated_at<?)

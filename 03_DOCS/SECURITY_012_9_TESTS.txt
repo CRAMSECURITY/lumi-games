@@ -1,0 +1,515 @@
+
+=== Python tests ===
+.................................................................Ban sync delayed: TimeoutError
+Ban sync delayed: TimeoutError
+.............................................................
+----------------------------------------------------------------------
+Ran 126 tests in 1.164s
+
+OK
+OK: account guard blocks actions, preserves support/deletion/payment, expired ban ignored
+PASS: block flow / authorization / no double-audit / reversible / no profile deletion / privacy count
+PASS: 100 unique places, age/profile checks, concurrent claims, no recycling, sqlite integrity
+PASS referrals: registration, self-invite, deduplication, 3-person frame, deletion
+PASS daily: once UTC day, 7-day streak, missed day, past day, deletion
+LUMI 3.8 ops tests: PASS
+OK: migration, duplicate protection, 24h/7d/permanent, expiry, custom reason, audit, SQLite integrity
+PASS: old tickets retained, both migrations idempotent, multi-message conversation, open-after-reply, quick_check
+OK: 8 privacy/visibility/image checks
+PASS: start / 19 / 20 / awaiting / approved / unrelated user / hidden manual entry / admin identity
+SQL statements old/new: 7983 1
+SEARCH profile_views USING INDEX idx_profile_views_target (target_id=?)
+SEARCH browse_daily USING INDEX idx_browse_daily_day (day<?)
+SEARCH lumi_starter_daily USING INDEX idx_starter_daily_day (day<?)
+SEARCH support_tickets USING COVERING INDEX idx_support_status_updated (status=? AND updated_at<?)
+
+=== Tool tests ===
+......
+=== Python tests ===
+
+=== Tool tests ===
+
+=== JavaScript tests ===
+
+=== Dependency audit ===
+..Python syntax: PASS
+Python tests: PASS
+Tool tests: FAIL
+JavaScript tests: PASS
+Dependency audit: PASS
+RELEASE BLOCKED: failed or incomplete automated checks.
+
+=== Python tests ===
+
+=== Tool tests ===
+
+=== JavaScript tests ===
+
+=== Dependency audit ===
+...
+----------------------------------------------------------------------
+Ran 11 tests in 0.233s
+
+OK
+Python syntax: PASS
+Python tests: PASS
+Tool tests: PASS
+JavaScript tests: PASS
+Dependency audit: PASS
+LOCAL CHECKS PASSED; RELEASE NOT APPROVED (online audit not run).
+
+=== JavaScript tests ===
+TAP version 13
+# Subtest: accepts authentic Telegram initData
+ok 1 - accepts authentic Telegram initData
+  ---
+  duration_ms: 19.6139
+  type: 'test'
+  ...
+# Subtest: rejects tampered Telegram initData
+ok 2 - rejects tampered Telegram initData
+  ---
+  duration_ms: 3.086247
+  type: 'test'
+  ...
+# Subtest: rejects expired data
+ok 3 - rejects expired data
+  ---
+  duration_ms: 0.525873
+  type: 'test'
+  ...
+# Subtest: accepts valid initData with token containing pasted whitespace
+ok 4 - accepts valid initData with token containing pasted whitespace
+  ---
+  duration_ms: 2.375138
+  type: 'test'
+  ...
+# Subtest: rejects mismatched token even after whitespace normalization
+ok 5 - rejects mismatched token even after whitespace normalization
+  ---
+  duration_ms: 2.095202
+  type: 'test'
+  ...
+# Subtest: modern Telegram HMAC includes signature and unknown fields
+ok 6 - modern Telegram HMAC includes signature and unknown fields
+  ---
+  duration_ms: 1.702897
+  type: 'test'
+  ...
+# Subtest: rejects changed or removed signature
+ok 7 - rejects changed or removed signature
+  ---
+  duration_ms: 5.150583
+  type: 'test'
+  ...
+# Subtest: accepts reordered fields
+ok 8 - accepts reordered fields
+  ---
+  duration_ms: 2.420817
+  type: 'test'
+  ...
+# Subtest: rejects duplicate fields
+ok 9 - rejects duplicate fields
+  ---
+  duration_ms: 0.983886
+  type: 'test'
+  ...
+# Subtest: rejects future auth beyond clock tolerance
+ok 10 - rejects future auth beyond clock tolerance
+  ---
+  duration_ms: 1.991717
+  type: 'test'
+  ...
+# Subtest: rejects ambiguous signed line delimiters and key names
+ok 11 - rejects ambiguous signed line delimiters and key names
+  ---
+  duration_ms: 1.392705
+  type: 'test'
+  ...
+# Subtest: rejects malformed wire encoding even when forgiving parsing yields signed data
+ok 12 - rejects malformed wire encoding even when forgiving parsing yields signed data
+  ---
+  duration_ms: 6.641114
+  type: 'test'
+  ...
+# Subtest: collection initializes, filters, opens details and switches fallback images
+ok 13 - collection initializes, filters, opens details and switches fallback images
+  ---
+  duration_ms: 23.343266
+  type: 'test'
+  ...
+# Subtest: five accessory meshes contain valid geometry and fallback assets exist
+ok 14 - five accessory meshes contain valid geometry and fallback assets exist
+  ---
+  duration_ms: 4.818859
+  type: 'test'
+  ...
+# Subtest: authenticated malformed JSON and invalid fields rejected across routes
+ok 15 - authenticated malformed JSON and invalid fields rejected across routes
+  ---
+  duration_ms: 149.0685
+  type: 'test'
+  ...
+# Subtest: invalid round boundaries and ambiguous room query rejected
+ok 16 - invalid round boundaries and ambiguous room query rejected
+  ---
+  duration_ms: 3.322951
+  type: 'test'
+  ...
+# {"component":"lumi-api","schema":1,"event":"body_too_large","status":413}
+# {"component":"lumi-api","schema":1,"event":"body_too_large","status":413}
+# {"component":"lumi-api","schema":1,"event":"body_too_large","status":413}
+# {"component":"lumi-api","schema":1,"event":"body_too_large","status":413}
+# {"component":"lumi-api","schema":1,"event":"body_too_large","status":413}
+# Subtest: body size and encoding boundaries rejected
+ok 17 - body size and encoding boundaries rejected
+  ---
+  duration_ms: 7.12227
+  type: 'test'
+  ...
+# Subtest: all model vertices fit inside conservative camera envelope including maximum jump, zoom, pitch and any yaw
+ok 18 - all model vertices fit inside conservative camera envelope including maximum jump, zoom, pitch and any yaw
+  ---
+  duration_ms: 21.41318
+  type: 'test'
+  ...
+# Subtest: home and collection have distinct screens, no active legacy picture gallery
+ok 19 - home and collection have distinct screens, no active legacy picture gallery
+  ---
+  duration_ms: 0.549258
+  type: 'test'
+  ...
+# (node:21614) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"access_denied","status":403}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"rate_limited","status":429}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"access_denied","status":403}
+# {"component":"lumi-api","schema":1,"event":"access_denied","status":403}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"body_too_large","status":413}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"rate_limited","status":429}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"access_denied","status":403}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"rate_limited","status":429}
+# {"component":"lumi-api","schema":1,"event":"access_denied","status":403}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"access_denied","status":403}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# Subtest: two players, five rounds, authorization, reconnect and scores using SQLite
+ok 20 - two players, five rounds, authorization, reconnect and scores using SQLite
+  ---
+  duration_ms: 206.276056
+  type: 'test'
+  ...
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"rate_limited","status":429}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# Subtest: missing edge limiter fails closed
+ok 21 - missing edge limiter fails closed
+  ---
+  duration_ms: 31.308332
+  type: 'test'
+  ...
+# Subtest: edge denial precedes auth and database
+ok 22 - edge denial precedes auth and database
+  ---
+  duration_ms: 0.97346
+  type: 'test'
+  ...
+# Subtest: allowed edge request still requires Telegram authentication
+ok 23 - allowed edge request still requires Telegram authentication
+  ---
+  duration_ms: 1.209853
+  type: 'test'
+  ...
+# LUMI edge limiter failed
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# LUMI API error
+# LUMI scheduled cleanup failed
+# Subtest: limiter outage and invalid responses fail closed without DB access
+ok 24 - limiter outage and invalid responses fail closed without DB access
+  ---
+  duration_ms: 34.399061
+  type: 'test'
+  ...
+# Subtest: missing database or token returns generic unavailable response
+ok 25 - missing database or token returns generic unavailable response
+  ---
+  duration_ms: 1.811824
+  type: 'test'
+  ...
+# Subtest: asynchronous asset rejection is caught and sanitized
+ok 26 - asynchronous asset rejection is caught and sanitized
+  ---
+  duration_ms: 0.868854
+  type: 'test'
+  ...
+# Subtest: broken input stream is rejected as a client error
+ok 27 - broken input stream is rejected as a client error
+  ---
+  duration_ms: 3.703857
+  type: 'test'
+  ...
+# Subtest: scheduled cleanup failure remains visible but sanitized
+ok 28 - scheduled cleanup failure remains visible but sanitized
+  ---
+  duration_ms: 0.518202
+  type: 'test'
+  ...
+# Subtest: deterministic five puzzles with valid choices
+ok 29 - deterministic five puzzles with valid choices
+  ---
+  duration_ms: 1.972959
+  type: 'test'
+  ...
+# Subtest: server scoring bounds
+ok 30 - server scoring bounds
+  ---
+  duration_ms: 0.262601
+  type: 'test'
+  ...
+# Subtest: catalog has 21 unique original IDs and both image sizes
+ok 31 - catalog has 21 unique original IDs and both image sizes
+  ---
+  duration_ms: 4.472032
+  type: 'test'
+  ...
+# Subtest: gallery keeps reduced motion and lazy image loading
+ok 32 - gallery keeps reduced motion and lazy image loading
+  ---
+  duration_ms: 0.775835
+  type: 'test'
+  ...
+# (node:21664) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: ban signature, expiry, unban and stale replay
+ok 33 - ban signature, expiry, unban and stale replay
+  ---
+  duration_ms: 9.755204
+  type: 'test'
+  ...
+# {"component":"lumi-api","schema":1,"event":"body_too_large","status":413}
+# Subtest: oversize declaration rejected before database access
+ok 34 - oversize declaration rejected before database access
+  ---
+  duration_ms: 27.603492
+  type: 'test'
+  ...
+# Subtest: bounded reader accepts fragmented body at limit
+ok 35 - bounded reader accepts fragmented body at limit
+  ---
+  duration_ms: 83.911427
+  type: 'test'
+  ...
+# Subtest: oversize stream rejects even if cancellation never completes
+ok 36 - oversize stream rejects even if cancellation never completes
+  ---
+  duration_ms: 1.258485
+  type: 'test'
+  ...
+# Subtest: stalled stream hits deadline and is cancelled
+ok 37 - stalled stream hits deadline and is cancelled
+  ---
+  duration_ms: 20.47906
+  type: 'test'
+  ...
+# Subtest: excessive empty fragments are rejected
+ok 38 - excessive empty fragments are rejected
+  ---
+  duration_ms: 103.184109
+  type: 'test'
+  ...
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"auth_rejected","status":401}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# Subtest: authentication rejects malformed and tampered inputs (deterministic fuzz)
+ok 39 - authentication rejects malformed and tampered inputs (deterministic fuzz)
+  ---
+  duration_ms: 23.039122
+  type: 'test'
+  ...
+# Subtest: anonymous requests cannot access protected routes
+ok 40 - anonymous requests cannot access protected routes
+  ---
+  duration_ms: 24.206181
+  type: 'test'
+  ...
+# Subtest: API root cannot bypass edge policy
+ok 41 - API root cannot bypass edge policy
+  ---
+  duration_ms: 0.535228
+  type: 'test'
+  ...
+# LUMI API error
+# {"component":"lumi-api","schema":1,"event":"internal_failure","status":500}
+# Subtest: database failures are redacted and not mistaken for authentication failure
+ok 42 - database failures are redacted and not mistaken for authentication failure
+  ---
+  duration_ms: 8.668224
+  type: 'test'
+  ...
+# (node:21692) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: parallel exchange permits exactly one login, including reordered initData
+ok 43 - parallel exchange permits exactly one login, including reordered initData
+  ---
+  duration_ms: 16.064051
+  type: 'test'
+  ...
+# Subtest: session rejects expired, revoked and invalid tokens
+ok 44 - session rejects expired, revoked and invalid tokens
+  ---
+  duration_ms: 2.986059
+  type: 'test'
+  ...
+# Subtest: old launch data cannot create a session
+ok 45 - old launch data cannot create a session
+  ---
+  duration_ms: 1.447406
+  type: 'test'
+  ...
+# Subtest: deletion barrier rejects old launches and permits a fresh launch after expiry
+ok 46 - deletion barrier rejects old launches and permits a fresh launch after expiry
+  ---
+  duration_ms: 3.062472
+  type: 'test'
+  ...
+# Subtest: only fixed security event fields are emitted
+ok 47 - only fixed security event fields are emitted
+  ---
+  duration_ms: 7.518641
+  type: 'test'
+  ...
+# Subtest: logging failure does not alter response
+ok 48 - logging failure does not alter response
+  ---
+  duration_ms: 25.754722
+  type: 'test'
+  ...
+# Subtest: rate-limit event excludes all request data
+ok 49 - rate-limit event excludes all request data
+  ---
+  duration_ms: 2.380406
+  type: 'test'
+  ...
+# Subtest: create and join errors appear in the visible home screen
+ok 50 - create and join errors appear in the visible home screen
+  ---
+  duration_ms: 0.800202
+  type: 'test'
+  ...
+# Subtest: saved room recovers after transient network error, restores score and shares code
+ok 51 - saved room recovers after transient network error, restores score and shares code
+  ---
+  duration_ms: 7.752469
+  type: 'test'
+  ...
+# Subtest: invalid saved room is cleared only for permanent denial
+ok 52 - invalid saved room is cleared only for permanent denial
+  ---
+  duration_ms: 3.085406
+  type: 'test'
+  ...
+# Subtest: expired authorization preserves saved room for reopening
+ok 53 - expired authorization preserves saved room for reopening
+  ---
+  duration_ms: 2.207659
+  type: 'test'
+  ...
+# Subtest: welcome hidden by default, enters home, room links bypass it
+ok 54 - welcome hidden by default, enters home, room links bypass it
+  ---
+  duration_ms: 2.182512
+  type: 'test'
+  ...
+# Subtest: local WebGL renderer, smooth normals and bounded jump
+ok 55 - local WebGL renderer, smooth normals and bounded jump
+  ---
+  duration_ms: 0.325205
+  type: 'test'
+  ...
+# Subtest: GLB contains geometry and animation clips
+ok 56 - GLB contains geometry and animation clips
+  ---
+  duration_ms: 1.732772
+  type: 'test'
+  ...
+# (node:21762) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# {"component":"lumi-api","schema":1,"event":"rate_limited","status":429}
+# {"component":"lumi-api","schema":1,"event":"service_unavailable","status":503}
+# Subtest: readiness verifies actual migrations and fails closed on missing schema
+ok 57 - readiness verifies actual migrations and fails closed on missing schema
+  ---
+  duration_ms: 28.589096
+  type: 'test'
+  ...
+# Subtest: readiness hides database errors and secrets
+ok 58 - readiness hides database errors and secrets
+  ---
+  duration_ms: 0.804389
+  type: 'test'
+  ...
+# Subtest: health is subject to edge rate limit before database access
+ok 59 - health is subject to edge rate limit before database access
+  ---
+  duration_ms: 0.507526
+  type: 'test'
+  ...
+# Subtest: readiness rejects existing tables with missing required columns
+ok 60 - readiness rejects existing tables with missing required columns
+  ---
+  duration_ms: 2.624349
+  type: 'test'
+  ...
+1..60
+# tests 60
+# suites 0
+# pass 60
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 765.641221
+
+=== Dependency audit ===
+NPM lock metadata OK: 133 packages
+OFFLINE ONLY: CVE audit not performed; release not approved.
+Python syntax: PASS
+Python tests: PASS
+Tool tests: PASS
+JavaScript tests: PASS
+Dependency audit: PASS
+LOCAL CHECKS PASSED; RELEASE NOT APPROVED (online audit not run).

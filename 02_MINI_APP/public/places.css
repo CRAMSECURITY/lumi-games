@@ -1,0 +1,105 @@
+.places-entry{background:radial-gradient(ellipse at 92% 20%,#8556b8 0%,transparent 55%),linear-gradient(125deg,#21142f,#100b19);min-height:112px}.places-entry:before{content:'✦';position:absolute;right:47px;top:-10px;font-size:110px;line-height:1;color:#e3c2ff;opacity:.22;pointer-events:none}.places-entry>span{position:relative;z-index:1}.places-entry strong{font-size:clamp(18px,5vw,27px)}
+#places-dialog{box-sizing:border-box;width:min(94vw,480px);max-height:88dvh;overflow:auto;background:#130e1c;color:#faf6ff;border:1px solid #6c498d;border-radius:22px;padding:18px;box-shadow:0 20px 70px #0009}#places-dialog::backdrop{background:#08050dc9}.places-top{display:flex;align-items:center;justify-content:space-between}.places-top button{min-width:44px;min-height:44px}#places-title{font-size:clamp(25px,7vw,39px);line-height:1.04;letter-spacing:-.05em;margin:15px 0}#places-title em{color:#c795f9;font-style:normal}.places-demo{font-size:11px;color:#dac2ee;border:1px solid #574168;padding:8px;border-radius:9px}.places-filters{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.places-filters button{background:#23182f;color:#e9d8fa;border:1px solid #5b426f;padding:9px 12px;border-radius:18px;min-height:44px}.places-filters button[aria-pressed=true]{background:#d6b0f5;color:#1b1028}.places-list{display:grid;gap:12px}.places-item{background:linear-gradient(135deg,#31203e,#191320 65%);border:1px solid #503b64;border-radius:15px;padding:14px;box-shadow:0 5px 0 #38234c}.places-item small{color:#c795f9;letter-spacing:.08em}.places-item h3{margin:8px 0;font-size:20px}.places-item p{color:#d2c3df;font-size:13px;line-height:1.5}.places-item button{width:100%;min-height:44px}.places-item button[aria-pressed=true]{background:#d6b0f5;color:#1b1028}
+
+.places-business{display:grid;gap:7px;text-align:left;width:100%;padding:16px;margin:12px 0;border:1px solid #9469ba;border-radius:16px;background:linear-gradient(135deg,#40275a,#20132d);color:#faf6ff;box-shadow:0 5px 0 #39234d}.places-business small{color:#d9b8ff;letter-spacing:.08em}.places-business strong{font-size:clamp(18px,5vw,25px)}.places-business span{font-size:12px;color:#e3c9f8}#places-goals[hidden]{display:none}
+
+.business-identity{margin:12px 0;padding:14px;border:1px solid #765494;border-radius:16px;background:linear-gradient(145deg,#2c1b40,#171020)}.business-identity summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:#e3c2ff}.business-identity form{display:grid;gap:12px}.business-identity label{display:grid;gap:5px;font-size:13px;color:#e9d8fa}.business-identity input,.business-identity select,.business-identity textarea{box-sizing:border-box;width:100%;min-height:44px;background:#1a1125;color:#faf6ff;border:1px solid #765494;border-radius:10px;padding:10px;font:inherit}.business-identity textarea{resize:vertical}.business-identity .places-item{overflow-wrap:anywhere;margin:12px 0}.business-identity [hidden]{display:none!important}
+
+/* LUMI 023.8.1 — EDITORIAL TYPE. Discover only. */
+#home-places strong{font-size:clamp(23px,6.6vw,36px);font-weight:950;line-height:1.04;letter-spacing:-.045em;overflow-wrap:normal}
+#home-places>span>small{font-size:11px;font-weight:800;letter-spacing:.13em}
+#home-places>span>span{font-size:14px;font-weight:600;line-height:1.4}
+#places-dialog{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-wrap:anywhere}
+#places-dialog .places-top .eyebrow{font-size:11px;font-weight:800;letter-spacing:.15em}
+#places-dialog #places-title{font-size:clamp(32px,9vw,49px);font-weight:950;line-height:1.04;letter-spacing:-.05em;text-wrap:balance}
+#places-dialog .places-business strong{font-size:clamp(23px,6.7vw,32px);font-weight:950;line-height:1.08;letter-spacing:-.035em}
+#places-dialog .places-business small,#places-dialog .places-item small{font-size:11px;font-weight:800;letter-spacing:.10em}
+#places-dialog .places-business span{font-size:14px;font-weight:600;line-height:1.45}
+#places-dialog .business-identity summary{font-size:clamp(19px,5.6vw,26px);font-weight:900;line-height:1.15;letter-spacing:-.025em}
+#places-dialog .places-item h3{font-size:clamp(22px,6.2vw,29px);font-weight:900;line-height:1.14;letter-spacing:-.035em}
+#places-dialog .places-item p,#places-dialog .note{font-size:14px;line-height:1.55;font-weight:500;letter-spacing:normal}
+#places-dialog .places-demo{font-size:12px;line-height:1.45;font-weight:700}
+#places-dialog .places-filters button,#places-dialog button.primary,#places-dialog button.secondary,#places-dialog .places-item button{font-size:14px;font-weight:800;line-height:1.3;letter-spacing:.005em;white-space:normal}
+#places-dialog .business-identity label{font-size:14px;font-weight:700;line-height:1.4}
+#places-dialog .business-identity input:not([type=checkbox]),#places-dialog .business-identity select,#places-dialog .business-identity textarea{font-size:16px;font-weight:500;line-height:1.4}
+
+/* 023.8.2 — Interactive 3D editorial, Discover only. */
+#places-dialog{border-color:#8c62ad;padding:clamp(14px,4vw,20px);overflow-x:hidden;overscroll-behavior:contain;background:radial-gradient(ellipse at 100% 0,#352049 0,transparent 35%),#130e1c;scrollbar-width:thin;scrollbar-color:#65447f transparent}
+#places-dialog .places-list{gap:20px;padding:8px 4px 14px}
+#places-dialog .places-item,#places-dialog .places-business,#places-dialog .business-identity>summary{--card-rx:0deg;--card-ry:0deg;--card-x:50%;--card-y:15%;--card-lift:0px;position:relative;isolation:isolate;transform:perspective(900px) translateY(var(--card-lift)) rotateX(var(--card-rx)) rotateY(var(--card-ry));transform-origin:center;transition:transform .28s cubic-bezier(.2,.8,.2,1);touch-action:pan-y}
+#places-dialog .places-item,#places-dialog .places-business{border:1px solid #8661a3;border-radius:20px;background:radial-gradient(ellipse at 90% 0,#62417c70,transparent 58%),linear-gradient(145deg,#32203f,#18121f 70%);box-shadow:0 2px 0 #ad83c9,0 5px 0 #4c3267,0 8px 0 #251931,0 16px 24px -8px #000b;padding:18px;min-width:0}
+#places-dialog .places-item::after,#places-dialog .places-business::after,#places-dialog .business-identity>summary::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;background:radial-gradient(ellipse at var(--card-x) var(--card-y),#edc9ff45,transparent 65%);opacity:0;transition:opacity .24s}
+#places-dialog .is-discover-tilting{--card-lift:-3px;transition:transform .065s linear}
+#places-dialog .is-discover-tilting::after{opacity:.8}
+#places-dialog .places-item h3{margin:8px 0 10px;text-transform:uppercase;text-wrap:balance;color:#fcf4ff}
+#places-dialog .places-item small{display:inline-block;color:#d9b8ff}
+#places-dialog .places-item p{margin:8px 0 16px;color:#dfcfe8}
+#places-dialog .places-item button,#places-dialog .places-item>a{margin-top:7px;min-height:44px}
+#places-dialog .places-item>a{display:flex;align-items:center;padding:10px 12px;border:1px solid #9a72b8;border-radius:12px;color:#f1ddff;text-decoration:none;background:#261935;font-weight:800;line-height:1.35}
+#places-dialog .places-item button.secondary{border-radius:12px;background:#302041;border:1px solid #8862a6;color:#f5e7ff}
+#places-dialog .places-item button[aria-pressed=true]{background:#e2c3ff;color:#21132f}
+#places-dialog .places-business{margin:18px 0 22px;min-height:120px;padding-right:25%;background:radial-gradient(ellipse at 100% 15%,#aa79d260,transparent 65%),linear-gradient(135deg,#47275c,#1c1228);text-wrap:balance}
+#places-dialog .places-business::before{content:'✦';position:absolute;right:13px;top:15px;font-size:clamp(45px,12vw,72px);line-height:1;color:#d6b0f5;opacity:.65;text-shadow:0 3px #714c93,0 8px 18px #09060d;pointer-events:none}
+#places-dialog .business-identity{padding:10px 12px 15px;border-color:#604477;border-radius:20px;background:#1a1225;margin:18px 0;box-shadow:0 4px 0 #2e1e3c}
+#places-dialog .business-identity>summary{padding:14px 12px;border-radius:13px;border:1px solid #79539b;background:linear-gradient(135deg,#412955,#22172e);box-shadow:0 3px 0 #412b53;min-height:56px;display:block;cursor:pointer;line-height:1.15}
+#places-dialog .business-identity[open]>summary{margin-bottom:14px}
+#places-dialog .business-identity form{padding:4px 1px}
+#places-dialog .business-identity form input:not([type=checkbox]),#places-dialog .business-identity form select,#places-dialog .business-identity form textarea{border-radius:12px;background:#120d1b}
+#places-dialog .places-item[data-place-visual]::before{content:'';display:block;width:100%;height:clamp(74px,23vw,112px);margin-bottom:13px;border-radius:12px;background-position:center;background-repeat:no-repeat;background-size:contain;background-color:#21152c;box-shadow:inset 0 1px #b58bd943;pointer-events:none}
+#places-dialog .places-item[data-place-visual=coffee]::before{background-image:url('/places-art/coffee.svg')}
+#places-dialog .places-item[data-place-visual=pitch]::before{background-image:url('/places-art/pitch.svg')}
+#places-dialog .places-item[data-place-visual=city]::before{background-image:url('/places-art/city.svg')}
+#places-dialog button:focus-visible,#places-dialog a:focus-visible,#places-dialog summary:focus-visible{outline:2px solid #f0d8ff;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){#places-dialog .places-item,#places-dialog .places-business,#places-dialog .business-identity>summary{transform:none!important;transition:none!important}#places-dialog .places-item::after,#places-dialog .places-business::after,#places-dialog .business-identity>summary::after{opacity:0!important;transition:none!important}}
+/* One ambient animation, only for the featured business card. */
+#places-dialog[open] .places-business{animation:discover-hover 5s ease-in-out infinite}
+#places-dialog[open] .places-business.is-discover-tilting,html.lumi-background #places-dialog[open] .places-business{animation-play-state:paused}
+@keyframes discover-hover{0%,100%{translate:0 0}50%{translate:0 -4px}}
+@media(prefers-reduced-motion:reduce){#places-dialog[open] .places-business{animation:none!important;translate:none!important}}
+
+/* 023.8.3 — same split composition as editorial Duel / Games. */
+#home #home-places{background:linear-gradient(90deg,#191420 0%,#191420e8 40%,transparent 78%),url('/places-art/city.svg') right center/auto 115% no-repeat,#191420;min-height:145px;border-radius:16px;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);padding:16px 38% 16px 15px;display:block}
+#home #home-places::before{content:none}
+#home #home-places .ed-arrow{margin-top:10px}
+#home #home-places>span>span{font-size:12px}
+#home .home-float-stage:has(#home-places){--home-shape:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+#places-dialog{background:#100c16;border-color:#392e46}
+#places-dialog .places-business{background:linear-gradient(90deg,#191420 0%,#191420e8 40%,transparent 80%),url('/places-art/briefcase.svg') right center/auto 110% no-repeat,#191420;padding:18px 39% 18px 15px;text-align:left;text-wrap:initial;border-radius:15px;min-height:144px}
+#places-dialog .places-business::before{content:none}
+#places-dialog .places-business strong{font-size:clamp(20px,5.7vw,28px)}
+#places-dialog .places-item,#places-dialog .places-business{border-color:#493757;box-shadow:0 3px 0 #b18bd2,0 6px 0 #50366c,0 12px 20px -9px #000b;border-radius:15px;background-color:#191420}
+#places-dialog .places-item{background:#191420}
+#places-dialog .places-item[data-place-visual]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,35%);column-gap:8px;align-items:start}
+#places-dialog .places-item[data-place-visual]::before{grid-column:2;grid-row:1 / span 3;align-self:stretch;height:auto;min-height:100px;width:100%;margin:0;background-color:transparent;background-size:cover;box-shadow:none;border-radius:0}
+#places-dialog .places-item[data-place-visual]>small,#places-dialog .places-item[data-place-visual]>h3,#places-dialog .places-item[data-place-visual]>p{grid-column:1}
+#places-dialog .places-item[data-place-visual]>button,#places-dialog .places-item[data-place-visual]>a{grid-column:1/-1}
+#places-dialog .places-item[data-place-visual] h3{text-wrap:initial;font-size:clamp(19px,5.6vw,27px);overflow-wrap:anywhere}
+#places-dialog .business-identity{background:transparent;border:0;box-shadow:none;padding:0 3px 12px}
+#places-dialog .business-identity>summary{--discover-art:url('/places-art/briefcase.svg');background:linear-gradient(90deg,#191420 0%,#191420df 44%,transparent 83%),var(--discover-art) right center/auto 115% no-repeat,#191420;padding:25px 38% 25px 15px;min-height:100px;box-sizing:border-box;color:#faf6ff;border-color:#493757;border-radius:15px;box-shadow:0 3px 0 #b18bd2,0 6px 0 #50366c,0 12px 20px -9px #000b;font-weight:950}
+#places-dialog .business-identity>summary.discover-ticket{--discover-art:url('/places-art/ticket.svg')}
+#places-dialog .business-identity>summary.discover-calendar{--discover-art:url('/places-art/calendar.svg')}
+/* 024.0 — compact navigation, original signature cards remain unchanged. */
+#places-dialog .ecosystem-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 20px}
+#places-dialog .ecosystem-nav button{min-height:44px;font-weight:900;font-size:clamp(11px,3.4vw,14px);white-space:normal;border:1px solid #493757;border-radius:10px;background:#191420;color:#eee0ff}
+#places-dialog .business-identity button,#places-dialog .business-identity form{scroll-margin-block:16px}
+
+/* 025.0 — one dimensional headline, one quiet supporting line. */
+#places-dialog #places-title{font-size:clamp(32px,9vw,46px);font-weight:950;line-height:1.04;letter-spacing:-.055em;color:#faf6ff;text-shadow:0 1px #cab5df,0 2px #9479ad,0 3px #59436e,0 6px 12px #0008;margin:18px 0 7px;text-wrap:balance}
+#places-dialog .city-subtitle{font-size:clamp(16px,4.4vw,20px);font-weight:400;line-height:1.4;letter-spacing:0;color:#cbb6df;text-shadow:none;margin:0 0 12px}
+#places-dialog .business-identity>summary.discover-city{--discover-art:url('/places-art/city.svg')}
+#places-dialog .city-collections .places-item p{font-weight:400}
+
+#places-dialog .city-discovery-title{font-size:clamp(25px,7vw,38px);font-weight:950;letter-spacing:-.05em;color:#faf6ff;text-shadow:0 2px #9479ad,0 4px #50366c;margin:18px 0 7px;line-height:1.05}
+#places-dialog .city-discovery-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 18px}
+#places-dialog .city-discovery-filters label{display:grid;gap:5px;font-weight:400;min-width:0}
+#places-dialog .city-discovery-filters select{width:100%;min-width:0;min-height:44px;background:#191420;color:#eee0ff;border:1px solid #493757;border-radius:8px}
+#places-dialog .city-discovery-filters label:last-child{display:flex;align-items:center;grid-column:1/-1}
+#places-dialog [data-city-list] h3{font-weight:950;overflow-wrap:anywhere}
+
+#places-dialog .city-match-form{display:grid;gap:12px;margin:12px 0 20px}
+#places-dialog .city-match-form label{display:grid;gap:5px;font-weight:400;color:#cbb6df}
+#places-dialog .city-match-form select{min-width:0;width:100%;min-height:44px;background:#191420;color:#eee0ff;border:1px solid #493757;border-radius:8px}
+#places-dialog .city-match-form button{min-height:44px;font-weight:900}
+#places-dialog [data-date-planner] input,#places-dialog [data-date-planner] textarea{box-sizing:border-box;width:100%;min-width:0;min-height:44px;background:#191420;color:#eee0ff;border:1px solid #493757;border-radius:8px;padding:10px;font:inherit;color-scheme:dark}
+#places-dialog .plan-preview{display:grid;gap:6px;color:#cbb6df;font-weight:400;margin-bottom:12px}
+#places-dialog [data-plan-copy]:disabled{opacity:.5}

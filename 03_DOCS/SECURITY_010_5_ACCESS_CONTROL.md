@@ -1,0 +1,2 @@
+# 010.5 ACCESS CONTROL
+Base: 010.4. Added participant checks before and after room advancement and inside atomic answer insertion. Extended integration assertions for cross-account morning scores, spoofed user_id, unsigned internal deletion and ban sync. 44/44 JS tests passed. No new migration. Python and UI unchanged. No live Cloudflare or Telegram test, no full admin audit, no reproduction of concurrent membership change. Existing ban/session timing and wider deployment risks remain.

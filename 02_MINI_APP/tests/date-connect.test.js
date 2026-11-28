@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
+import {readFileSync,readdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import worker from '../src/worker.js';
+test('date connect consent, one-use codes, isolation and deletion',async()=>{
+ const db=new DatabaseSync(':memory:');try{
+ for(const name of readdirSync(new URL('../migrations/',import.meta.url)).sort())db.exec(readFileSync(new URL('../migrations/'+name,import.meta.url),'utf8'));
+ const t=Math.floor(Date.now()/1000), tokens=['a'.repeat(64),'b'.repeat(64),'c'.repeat(64)];
+ tokens.forEach((v,i)=>db.prepare('INSERT INTO web_sessions(init_hash,token_hash,user_id,expires_at,retain_until) VALUES(?,?,?,?,?)').run('init'+i,createHash('sha256').update(v).digest('hex'),String(i+1),t+3600,t+3600));
+ const env={BOT_TOKEN:'dummy',LUMI_BAN_SYNC_KEY:'a'.repeat(32),LUMI_DATE_CONNECT:'1',LUMI_EVENT_REGISTRATION:'1',LUMI_BUSINESS_MODERATION:'1',LUMI_BUSINESS_MODERATOR_IDS:'2',EDGE_RATE:{limit:async()=>({success:true})},DB:{prepare(sql){return{bind(...args){const stmt=db.prepare(sql);return{first:async()=>stmt.get(...args),all:async()=>({results:stmt.all(...args)}),run:async()=>({meta:{changes:Number(stmt.run(...args).changes)}})}}}}}};
+ async function call(i,path,body,status=200){const res=await worker.fetch(new Request('https://example.test/api/date-connect/'+path,{method:body===undefined?'GET':'POST',headers:{'x-lumi-session':tokens[i]||''},body:body===undefined?undefined:JSON.stringify(body)}),env);assert.equal(res.status,status);return res.json()}
+ const plan={place_id:'ffm-garden',day:new Date((t+7*86400)*1000).toISOString().slice(0,10),time:'15:00',consent:true};
+ await call(9,'list',undefined,401);await call(1,'key',{},400);let {code}=await call(1,'key',{consent:true});await call(1,'send',{...plan,code},409);await call(0,'send',{...plan,code,place_id:'fake'},400);const {id}=await call(0,'send',{...plan,code});await call(2,'send',{...plan,code},409);assert.deepEqual((await call(2,'list')).plans,[]);await call(2,'decide',{id,state:'accepted',consent:true},409);await call(0,'decide',{id,state:'accepted',consent:true},409);await call(1,'decide',{id,state:'accepted',consent:true});assert.equal((await call(0,'list')).plans[0].state,'accepted');assert.ok(!('recipient' in (await call(0,'list')).plans[0]));await call(0,'decide',{id,state:'cancelled',consent:true});await call(1,'decide',{id,state:'accepted',consent:true},409);({code}=await call(1,'key',{consent:true}));await call(1,'revoke',{consent:true});await call(0,'send',{...plan,code},409);({code}=await call(1,'key',{consent:true}));db.prepare('UPDATE date_keys SET expires_at=?').run(t-1);await call(0,'send',{...plan,code},409);({code}=await call(1,'key',{consent:true}));const second=await call(0,'send',{...plan,code});await call(2,'block',{id:second.id,consent:true},409);await call(1,'block',{id:second.id,consent:true});assert.equal(db.prepare('SELECT state FROM date_plans WHERE id=?').get(second.id).state,'cancelled');assert.deepEqual((await call(0,'list')).plans,[]);({code}=await call(1,'key',{consent:true}));await call(0,'send',{...plan,code},409);({code}=await call(0,'key',{consent:true}));await call(1,'send',{...plan,code},409);db.prepare('INSERT INTO account_deletions VALUES(?,?,?)').run('1',t,t+120);assert.equal(db.prepare('SELECT count(*) n FROM date_plans').get().n,0);env.LUMI_DATE_CONNECT='0';await call(1,'list',undefined,404);
+ }finally{db.close()}
+});

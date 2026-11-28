@@ -1,0 +1,12 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), display-capture=(), usb=(), serial=(), payment=(), accelerometer=(), gyroscope=(), magnetometer=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://telegram.org 'sha256-owdVTOnvIUC+7z6yliBPKws3i5pX0r/JZ/TjRcvoGBs='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'self' https://web.telegram.org https://*.telegram.org
+
+/index.html
+  Cache-Control: no-cache
+/
+  Cache-Control: no-cache
+/*.glb
+  Cache-Control: public, max-age=86400

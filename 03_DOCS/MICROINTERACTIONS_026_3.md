@@ -1,0 +1,2 @@
+# 026.3 MICROINTERACTIONS
+Scoped Telegram native selection feedback on trusted pointer clicks in places and game tabs, with 100 ms debounce. No feedback for canceled, synthetic, keyboard, disabled, hidden or reduced-motion actions. No vibration fallback outside Telegram. CSS press feedback does not replace existing tilt transforms. No new dependencies, migrations, or backend changes. Tests mock Telegram; hardware and actual WebView not verified.

@@ -1,0 +1,7 @@
+# 012.1 PRODUCTION HARDENING
+Before database initialization or Telegram network calls, both bots validate deployment settings. Main bot requires a valid Fernet backup key even on first boot and a separate ban sync key for a configured Mini App in production. Production is the default (LUMI_ENV=production). Development mode is an explicit opt-out for local test data only; never use it for real users. Token format checks do not prove token validity. Admin bot identity must differ from main bot identity. Numeric settings and admin IDs are checked; invalid settings are reported without printing their values.
+
+## Setup
+From 01_BOT, after installing requirements, run `python lumi_preflight.py` and, if using moderation bot, `python lumi_preflight.py --role admin`. Configure secrets in the existing protected environment or .env, never in the archive. For a new backup key use `python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"`. Preserve the existing key if encrypted backups already exist. For a new ban sync key use `python -c "import secrets; print(secrets.token_urlsafe(48))"` and configure the same value in Cloudflare and the bot. Do not share either key. If existing deployments use values outside validated ranges they must correct settings before upgrade. No database migration or UI changes.
+
+Tests: full local unittest discovery (117 tests), JS suite (59 tests). Real Telegram, Cloudflare, TLS, CVE scan and full database encryption not verified. Checks do not establish secret entropy or deployment permissions.

@@ -1,0 +1,5 @@
+# 013.6 INCIDENT RESPONSE
+Local incident classification on top of the 013.5 read-only SQLite probe.
+Run `python 01_BOT/lumi_incident.py PATH_TO_DB` under the trusted bot OS account. Schedule externally, e.g. every five minutes. Exit 0 = healthy; 1 = warning (latency >= 500 ms or >= 20 errors today by default); 2 = critical (database unavailable or unknown status). Output is fixed JSON without raw diagnostics or paths. Configure your monitoring system to alert on nonzero status, deduplicate alerts and notify on recovery. No remote delivery or automatic blocking is included.
+For warning, inspect aggregate metrics and service capacity. For critical, check service availability, disk, permissions and verified backups. Do not overwrite the live database or restart repeatedly without diagnosis. Record incident times and actions in a restricted incident log. If credentials are suspected compromised, revoke and rotate using the owner-controlled process.
+Tests: six new incident tests and six existing observability tests passed. No live infrastructure or full suite tested in this revision. No migrations. Sign archive with owner key before secure deployment.

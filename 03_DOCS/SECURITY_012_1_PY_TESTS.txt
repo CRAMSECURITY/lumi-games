@@ -1,0 +1,22 @@
+...............................................................Ban sync delayed: TimeoutError
+Ban sync delayed: TimeoutError
+......................................................
+----------------------------------------------------------------------
+Ran 117 tests in 0.970s
+
+OK
+OK: account guard blocks actions, preserves support/deletion/payment, expired ban ignored
+PASS: block flow / authorization / no double-audit / reversible / no profile deletion / privacy count
+PASS: 100 unique places, age/profile checks, concurrent claims, no recycling, sqlite integrity
+PASS referrals: registration, self-invite, deduplication, 3-person frame, deletion
+PASS daily: once UTC day, 7-day streak, missed day, past day, deletion
+LUMI 3.8 ops tests: PASS
+OK: migration, duplicate protection, 24h/7d/permanent, expiry, custom reason, audit, SQLite integrity
+PASS: old tickets retained, both migrations idempotent, multi-message conversation, open-after-reply, quick_check
+OK: 8 privacy/visibility/image checks
+PASS: start / 19 / 20 / awaiting / approved / unrelated user / hidden manual entry / admin identity
+SQL statements old/new: 7983 1
+SEARCH profile_views USING INDEX idx_profile_views_target (target_id=?)
+SEARCH browse_daily USING INDEX idx_browse_daily_day (day<?)
+SEARCH lumi_starter_daily USING INDEX idx_starter_daily_day (day<?)
+SEARCH support_tickets USING COVERING INDEX idx_support_status_updated (status=? AND updated_at<?)

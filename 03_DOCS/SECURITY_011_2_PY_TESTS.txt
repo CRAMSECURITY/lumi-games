@@ -1,0 +1,7 @@
+Executing <Task pending name='Task-2' coro=<AsyncPerformanceTests.test_claim_reminder_runs_off_event_loop() running at /tmp/lumi112/LUMI_011_1_RESOURCE_MANAGEMENT/01_BOT/test_async_performance.py:38> wait_for=<Future pending cb=[_chain_future.<locals>._call_check_cancel() at /usr/lib/python3.13/asyncio/futures.py:384, Task.task_wakeup()] created at /usr/lib/python3.13/asyncio/base_events.py:459> cb=[_run_until_complete_cb() at /usr/lib/python3.13/asyncio/base_events.py:181] created at /usr/lib/python3.13/asyncio/runners.py:100> took 0.104 seconds
+..Executing <Task pending name='Task-11' coro=<AsyncPerformanceTests.test_reminder_scan_runs_off_event_loop() running at /tmp/lumi112/LUMI_011_1_RESOURCE_MANAGEMENT/01_BOT/test_async_performance.py:26> wait_for=<Future pending cb=[_chain_future.<locals>._call_check_cancel() at /usr/lib/python3.13/asyncio/futures.py:384, Task.task_wakeup()] created at /usr/lib/python3.13/asyncio/base_events.py:459> cb=[_run_until_complete_cb() at /usr/lib/python3.13/asyncio/base_events.py:181] created at /usr/lib/python3.13/asyncio/runners.py:100> took 0.101 seconds
+.............................
+----------------------------------------------------------------------
+Ran 31 tests in 0.642s
+
+OK

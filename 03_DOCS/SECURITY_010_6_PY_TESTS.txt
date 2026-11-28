@@ -1,0 +1,17 @@
+test_corrupt_today_preserves_old (test_backup_policy.BackupPolicyTests.test_corrupt_today_preserves_old) ... ok
+test_invalid_key_preserves_old (test_backup_policy.BackupPolicyTests.test_invalid_key_preserves_old) ... ok
+test_legacy_not_deleted (test_backup_policy.BackupPolicyTests.test_legacy_not_deleted) ... ok
+test_valid_then_prune (test_backup_policy.BackupPolicyTests.test_valid_then_prune) ... ok
+test_wrong_key_preserves_old (test_backup_policy.BackupPolicyTests.test_wrong_key_preserves_old) ... ok
+test_roundtrip (test_backup_crypto.BackupCryptoTests.test_roundtrip) ... ok
+test_tampering (test_backup_crypto.BackupCryptoTests.test_tampering) ... ok
+test_restore (test_restore.TestRestore.test_restore) ... ok
+test_deleted_record_not_in_clean_database (test_database_vault.VaultTests.test_deleted_record_not_in_clean_database) ... ok
+test_pragmas_and_existing_data (test_database_vault.VaultTests.test_pragmas_and_existing_data) ... ok
+test_private_main_and_wal (test_database_vault.VaultTests.test_private_main_and_wal) ... ok
+test_symlink_and_hardlink_rejected (test_database_vault.VaultTests.test_symlink_and_hardlink_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.051s
+
+OK

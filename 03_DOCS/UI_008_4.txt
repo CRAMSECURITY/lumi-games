@@ -1,0 +1,3 @@
+360 all five tabs, indicator, 21 heroes, 6 routes, no overflow, no JS errors
+390 all five tabs, indicator, 21 heroes, 6 routes, no overflow, no JS errors
+1280 all five tabs, indicator, 21 heroes, 6 routes, no overflow, no JS errors

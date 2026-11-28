@@ -1,0 +1,37 @@
+LUMI 6.2: проверка текущих исходников в Linux, 2026-11-27
+test_account_guard_offline.py: 0
+test_admin_block_offline.py: 0
+test_bottom_runtime.py: 0
+test_dating_release.py: 0
+test_founder_event.py: 0
+test_keyboard_k4.py: 0
+test_lumi4_features_offline.py: 0
+test_matches.py: 0
+test_ops_3_8_offline.py: 0
+test_profile_hub.py: 0
+test_profiles.py: 0
+test_sanctions_offline.py: 0
+test_support_offline.py: 0
+test_teaser_offline.py: 0
+test_teaser_rotation.py: 0
+test_ux3.py: 0
+test_verification_gate.py: 0
+
+Worker:
+
+# tests 27
+# suites 0
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 270.968163
+
+Chromium (встроенные локальные файлы, без сети):
+390 PASS: 21 heroes, detail, no navigation, 6 distinct rendered images, zero page errors
+360 PASS: 21 heroes, detail, no navigation, 6 distinct rendered images, zero page errors
+1280 PASS: 21 heroes, detail, no navigation, 6 distinct rendered images, zero page errors
+
+Синтаксис: 26 Python, 18 JavaScript. Проверка секретов: 65 текстовых файлов, 0 совпадений по заданным шаблонам. Это не полный аудит.
+WebGL в среде недоступен. Проверка Windows, Telegram, D1, платежей, визуального качества, зависимостей и нагрузки не завершена. NO-GO для публичного релиза.

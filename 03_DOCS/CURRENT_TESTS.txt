@@ -1,0 +1,23 @@
+test_account_guard_offline.py: exit=0
+test_admin_block_offline.py: exit=0
+test_bottom_runtime.py: exit=0
+test_dating_release.py: exit=0
+test_founder_event.py: exit=0
+test_keyboard_k4.py: exit=0
+test_lumi4_features_offline.py: exit=0
+test_matches.py: exit=0
+test_ops_3_8_offline.py: exit=0
+test_profile_hub.py: exit=0
+test_profiles.py: exit=0
+test_sanctions_offline.py: exit=0
+test_support_offline.py: exit=0
+test_teaser_offline.py: exit=0
+test_teaser_rotation.py: exit=0
+test_ux3.py: exit=0
+test_verification_gate.py: exit=0
+Worker:
+# tests 27
+# pass 27
+# fail 0
+# skipped 0
+Production, actual WebGL, visual quality, registry audits: NOT VERIFIED.

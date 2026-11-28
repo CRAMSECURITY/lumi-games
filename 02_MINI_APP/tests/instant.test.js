@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {runInNewContext} from 'node:vm';
+const read=n=>readFileSync(new URL('../public/'+n,import.meta.url),'utf8');
+function fixture(hidden=false){let callback,timer,script,mounts=0,signal,disposed=0;const welcome={hidden},host={replaceChildren(){}},status={hidden:true,querySelector(){return this}};const doc={hidden:false,getElementById:id=>({'welcome':welcome,'drop-host':host,'drop-status':status}[id]),addEventListener(){},createElement:()=>({remove(){}}),head:{append(s){script=s}}};const win={LumiMascot:{mount(h,o){mounts++;signal=o.signal;return new Promise(()=>{})}}};runInNewContext(read('mascot-init.js'),{document:doc,window:win,navigator:{},matchMedia:()=>({matches:false}),MutationObserver:class{constructor(f){callback=f}observe(){}},setTimeout:f=>{timer=f;return 1},clearTimeout:()=>{timer=null},AbortController,Image:class{}});return {welcome,doc,callback,get timer(){return timer},get script(){return script},get mounts(){return mounts},get signal(){return signal}}}
+test('closed welcome never schedules renderer; quick entry cancels deferred work',()=>{let f=fixture(true);assert.equal(f.timer,null);f=fixture();assert.equal(f.script,undefined);f.welcome.hidden=true;f.callback();assert.equal(f.timer,null);assert.equal(f.mounts,0)});
+test('closing during model download aborts the request',async()=>{const f=fixture();f.timer();assert.match(f.script.src,/mascot-viewer/);f.script.onload();await new Promise(r=>setImmediate(r));assert.equal(f.mounts,1);assert.equal(f.signal.aborted,false);f.welcome.hidden=true;f.callback();assert.equal(f.signal.aborted,true)});
+test('renderer is not loaded by initial HTML and model fetch receives abort signal',()=>{assert.doesNotMatch(read('index.html'),/<script[^>]+src="\/mascot-viewer/);assert.match(read('mascot-viewer.js'),/fetch\('\/kigurumi\.glb',\{signal\}\)/)});

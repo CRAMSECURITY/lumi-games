@@ -1,0 +1,2 @@
+# 013.7 Trust & Safety
+Unifies pair blocking from profile, report and match handlers. Pending challenges, game sessions, active chats and contact requests are revoked in both directions in the same transaction. Match blocking checks access under BEGIN IMMEDIATE. No schema changes. Nine selected offline tests pass (three new). Existing messages already sent and in-flight network sends cannot be revoked. No new fraud classifier or age verification. Full integration and live Telegram not tested. Owner signature required.

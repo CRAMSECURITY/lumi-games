@@ -1,0 +1,2 @@
+# 023.8.3 — Discover / original editorial style
+Split composition based on user screenshot of Duel/Games. Home and section entries have text left, single violet faceted object right; existing touch tilt, reduced motion and click suppression retained. Three original SVG objects added; no photos or remote assets. No backend changes. Browser/Telegram visual validation outstanding. Next: event registration 023.9.

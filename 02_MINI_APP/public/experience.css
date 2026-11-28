@@ -1,0 +1,33 @@
+/* 026.0 — shared interaction tokens; signature card geometry stays untouched. */
+:root{--lumi-focus:#ecd5ff;--lumi-support:#cbb6df;--lumi-touch:44px;--lumi-fast:160ms;--lumi-enter:220ms;--lumi-ease:cubic-bezier(.2,.7,.25,1)}
+:where(button,a[href],summary,input,select,textarea):focus-visible{outline:2px solid var(--lumi-focus);outline-offset:3px}
+#places-dialog :is(button,a[href],summary,select),.tabs button{min-height:var(--lumi-touch)}
+#places-dialog :is(button,a[href],summary){-webkit-tap-highlight-color:transparent}
+#places-dialog :is(button:disabled,button[aria-disabled=true]){opacity:.55;cursor:not-allowed}
+#places-dialog :is(.city-subtitle,.places-item p,.plan-preview){font-weight:400;text-shadow:none;color:var(--lumi-support);line-height:1.45}
+#places-dialog .ecosystem-nav button{transition:background-color var(--lumi-fast) var(--lumi-ease),border-color var(--lumi-fast) var(--lumi-ease)}
+@media(hover:hover) and (pointer:fine){#places-dialog .ecosystem-nav button:not(:disabled):hover{background:#30213f;border-color:#a47bc4}}
+#places-dialog .ecosystem-nav button:not(:disabled):active{background:#49325e}
+@media(prefers-reduced-motion:no-preference){
+  :is(#duel,#morning,#heroes,#about):not(.hide){animation:lumi-view-enter var(--lumi-enter) var(--lumi-ease) both}
+  #places-dialog[open]{animation:lumi-view-enter var(--lumi-enter) var(--lumi-ease) both}
+  @keyframes lumi-view-enter{from{opacity:.65}to{opacity:1}}
+}
+@media(prefers-reduced-motion:reduce){#places-dialog .ecosystem-nav button{transition:none} :is(#duel,#morning,#heroes,#about,#places-dialog){animation:none!important}}
+
+/* 026.1: pause decorative loops outside the viewport or in background tabs. */
+#home .home-float-stage.lumi-offscreen .home-float-shell,
+#home .home-float-stage.lumi-offscreen::before,
+.arena-create-stage.lumi-offscreen .arena-levitate,
+.arena-create-stage.lumi-offscreen .arena-float,
+.arena-create-stage.lumi-offscreen::before,
+html.lumi-background .arena-levitate,
+html.lumi-background .arena-float,
+html.lumi-background .arena-create-stage::before,
+#places-dialog[open] .places-business.lumi-offscreen{animation-play-state:paused!important}
+
+/* 026.3: press feedback without overriding the 3D card transforms. */
+#places-dialog :is(button,summary,a[href]):not(:disabled):not([aria-disabled=true]):active,.tabs button:not(:disabled):active{filter:brightness(.88)}
+@media(prefers-reduced-motion:no-preference){
+ #places-dialog :is(.ecosystem-nav button,.places-filter button),.tabs button{transition:filter 100ms ease,background-color var(--lumi-fast) var(--lumi-ease),border-color var(--lumi-fast) var(--lumi-ease)}
+}

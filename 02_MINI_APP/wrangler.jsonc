@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "lumi-games",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-11-20",
+  "triggers": { "crons": ["17 * * * *"] },
+  "observability": { "logs": { "enabled": true, "head_sampling_rate": 1, "invocation_logs": false } },
+  "ratelimits": [{"name":"EDGE_RATE","namespace_id":"91001","simple":{"limit":600,"period":60}}],
+  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api", "/api/*"] },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "lumi-games-db",
+    "database_id": "554f1ef3-9144-4b3c-83af-b19a50df2807",
+    "migrations_dir": "migrations"
+  }]
+}

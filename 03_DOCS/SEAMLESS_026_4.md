@@ -1,0 +1,2 @@
+# 026.4 — SEAMLESS
+Telegram native BackButton closes the last opened dialog before returning from a non-home tab to Home. On Home and during welcome it is hidden. Existing dialog close handlers and tab click handlers are reused; no browser history or persistent state is changed. Unsupported SDKs retain existing navigation. MutationObserver tracks dialog visibility and current tab. Mock tests cover return, nested dialogs, welcome and absent SDK. Real Telegram and Python regression not run. No backend, design assets, age settings, migrations or dependencies changed.

@@ -1,0 +1,14 @@
+import {buildPlan} from './date-planner.js';
+const formatter=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+export function collectMoments(plans=[],events=[],now=new Date(),filter='all'){
+ const rows=[];
+ for(const p of plans){if(p.state!=='accepted')continue;const plan=buildPlan({placeId:p.place_id,date:p.day,time:p.time},now);if(plan)rows.push({id:'date:'+p.id,kind:'date',when:p.day+' '+p.time,title:plan.place.name,detail:plan.place.city});}
+ for(const e of events){if(!e.joined||e.state!=='approved'||!e.organizer_active||!Number.isFinite(e.starts_at)||e.starts_at*1000<=now.getTime())continue;rows.push({id:'event:'+e.id,kind:'event',when:formatter.format(new Date(e.starts_at*1000)),title:e.title,detail:e.city+' · '+e.venue});}
+ return rows.filter(r=>filter==='all'||r.kind===filter).sort((a,b)=>a.when.localeCompare(b.when)||a.id.localeCompare(b.id));
+}
+export function mountMoments(root){if(!root)return;const list=root.querySelector('[data-moments-list]'),status=root.querySelector('[data-moments-status]'),filter=root.querySelector('select'),load=root.querySelector('button');let generation=0,plans=[],events=[];const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
+ function render(){list.replaceChildren();for(const r of collectMoments(plans,events,new Date(),filter.value)){const card=node('article','');card.className='places-item';card.append(node('small',r.when+' · '+(r.kind==='date'?'ВСТРЕЧА':'СОБЫТИЕ')),node('h3',r.title),node('p',r.detail));list.append(card);}if(!list.children.length)list.append(node('p','Нет подтверждённых будущих планов в доступных источниках.'));}
+ function clear(){generation++;plans=[];events=[];list.replaceChildren();status.textContent='';load.disabled=false;filter.value='all';}
+ load.onclick=async()=>{const g=++generation;plans=[];events=[];list.replaceChildren();load.disabled=true;status.textContent='Загрузка…';const results=await Promise.allSettled([Promise.resolve().then(()=>window.lumiDateApi('list')),Promise.resolve().then(()=>window.lumiEventApi('registration/mine'))]);if(g!==generation)return;plans=results[0].status==='fulfilled'&&Array.isArray(results[0].value.plans)?results[0].value.plans:[];events=results[1].status==='fulfilled'&&Array.isArray(results[1].value.events)?results[1].value.events:[];const missing=results.map((r,i)=>r.status==='rejected'?[ 'встречи','мероприятия'][i]:null).filter(Boolean);status.textContent=missing.length?'Не удалось загрузить: '+missing.join(', ')+'. Обнови позже.':'Обновлено · время Europe/Berlin';render();load.disabled=false;};filter.onchange=render;root.addEventListener('toggle',()=>{if(!root.open)clear();});root.closest('dialog')?.addEventListener('close',clear);
+}
+if(typeof document!=='undefined')mountMoments(document.querySelector('[data-moments]'));

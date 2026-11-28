@@ -1,0 +1,4 @@
+# 014.4 ULTRA PERFORMANCE
+Hero holographic pointer handling now coalesces updates to one requestAnimationFrame, reads geometry once, and applies the latest position. Pending frames and styles are cleared on exit, cancellation, hidden documents or reduced-motion changes. Existing tilt geometry and drag click suppression retained. Gallery images set lazy loading and async decoding before assigning src. Script query versions bumped; art, CSS, backend, and age settings unchanged.
+
+Tests: 64/64 Node tests, including 4 new VM-based tests. Synthetic burst of 120 pointer events yields one layout read rather than 120 if rendered before the next frame. This is not a measured browser FPS or load-time gain. No real Telegram/mobile GPU measurements; GLB model remains unchanged. Python tests not rerun (Python source unchanged). No migration. Release owner signature required.

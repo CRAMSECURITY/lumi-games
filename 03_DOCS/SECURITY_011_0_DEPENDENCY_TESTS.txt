@@ -1,0 +1,7 @@
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.005s
+
+OK
+NPM lock metadata OK: 133 packages
+OFFLINE ONLY: CVE audit not performed; release not approved.

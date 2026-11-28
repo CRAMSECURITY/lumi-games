@@ -1,0 +1,3 @@
+CREATE TABLE partner_privileges(id TEXT PRIMARY KEY, merchant_id TEXT NOT NULL, title TEXT NOT NULL, terms TEXT NOT NULL, city TEXT NOT NULL, starts_at INTEGER NOT NULL, ends_at INTEGER NOT NULL, enabled INTEGER NOT NULL DEFAULT 0 CHECK(enabled IN(0,1)), CHECK(ends_at>starts_at));
+CREATE TABLE privilege_codes(offer_id TEXT NOT NULL, user_id TEXT NOT NULL, code TEXT NOT NULL UNIQUE, issued_at INTEGER NOT NULL, redeemed_at INTEGER, PRIMARY KEY(offer_id,user_id), FOREIGN KEY(offer_id) REFERENCES partner_privileges(id));
+CREATE TRIGGER privilege_account_delete AFTER INSERT ON account_deletions BEGIN DELETE FROM privilege_codes WHERE user_id=NEW.user_id; UPDATE partner_privileges SET enabled=0 WHERE merchant_id=NEW.user_id; END;

@@ -1,0 +1,206 @@
+{
+  "status": "NO_GO",
+  "note": "Required independent model assets. No placeholder or shared base model counts as delivered. Preserve original catalog metadata.",
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Воин",
+      "rank": "Воин",
+      "xp": 0,
+      "model": "models/heroes/01.glb",
+      "status": "missing"
+    },
+    {
+      "id": 2,
+      "name": "Ниндзя",
+      "rank": "Элита",
+      "xp": 1500,
+      "model": "models/heroes/02.glb",
+      "status": "missing"
+    },
+    {
+      "id": 3,
+      "name": "Ниндзя 2",
+      "rank": "Мастер",
+      "xp": 50000,
+      "model": "models/heroes/03.glb",
+      "status": "missing"
+    },
+    {
+      "id": 4,
+      "name": "Маг",
+      "rank": "Грандмастер",
+      "xp": 1500,
+      "model": "models/heroes/04.glb",
+      "status": "missing"
+    },
+    {
+      "id": 5,
+      "name": "Воительница",
+      "rank": "Эпик",
+      "xp": 5000,
+      "model": "models/heroes/05.glb",
+      "status": "missing"
+    },
+    {
+      "id": 6,
+      "name": "Король",
+      "rank": "Легенда",
+      "xp": 12000,
+      "model": "models/heroes/06.glb",
+      "status": "missing"
+    },
+    {
+      "id": 7,
+      "name": "Рыцарь-новичок",
+      "rank": "Воин",
+      "xp": 0,
+      "model": "models/heroes/07.glb",
+      "status": "missing"
+    },
+    {
+      "id": 8,
+      "name": "Синий рыцарь",
+      "rank": "Элита",
+      "xp": 1500,
+      "model": "models/heroes/08.glb",
+      "status": "missing"
+    },
+    {
+      "id": 9,
+      "name": "Мечник",
+      "rank": "Мастер",
+      "xp": 50000,
+      "model": "models/heroes/09.glb",
+      "status": "missing"
+    },
+    {
+      "id": 10,
+      "name": "Командир",
+      "rank": "Грандмастер",
+      "xp": 1500,
+      "model": "models/heroes/10.glb",
+      "status": "missing"
+    },
+    {
+      "id": 11,
+      "name": "Золотой защитник",
+      "rank": "Эпик",
+      "xp": 5000,
+      "model": "models/heroes/11.glb",
+      "status": "missing"
+    },
+    {
+      "id": 12,
+      "name": "Королевский паладин",
+      "rank": "Легенда",
+      "xp": 12000,
+      "model": "models/heroes/12.glb",
+      "status": "missing"
+    },
+    {
+      "id": 13,
+      "name": "Мифический рыцарь",
+      "rank": "Мифический",
+      "xp": 25000,
+      "model": "models/heroes/13.glb",
+      "status": "missing"
+    },
+    {
+      "id": 14,
+      "name": "Тигр-самурай",
+      "rank": "Эпик",
+      "xp": 5000,
+      "model": "models/heroes/14.glb",
+      "status": "missing"
+    },
+    {
+      "id": 15,
+      "name": "Чёрный дракон",
+      "rank": "Мифический",
+      "xp": 25000,
+      "model": "models/heroes/15.glb",
+      "status": "missing"
+    },
+    {
+      "id": 16,
+      "name": "Тёмная эльфийка",
+      "rank": "Грандмастер",
+      "xp": 1500,
+      "model": "models/heroes/16.glb",
+      "status": "missing"
+    },
+    {
+      "id": 17,
+      "name": "Золотой грифон",
+      "rank": "Эпик",
+      "xp": 5000,
+      "model": "models/heroes/17.glb",
+      "status": "missing"
+    },
+    {
+      "id": 18,
+      "name": "Единорожка-принцесса",
+      "rank": "Легенда",
+      "xp": 12000,
+      "model": "models/heroes/18.glb",
+      "status": "missing"
+    },
+    {
+      "id": 19,
+      "name": "Волшебница с котиками",
+      "rank": "Мифический",
+      "xp": 25000,
+      "model": "models/heroes/19.glb",
+      "status": "missing"
+    },
+    {
+      "id": 20,
+      "name": "Белый дракончик",
+      "rank": "Легенда",
+      "xp": 12000,
+      "model": "models/heroes/20.glb",
+      "status": "missing"
+    },
+    {
+      "id": 21,
+      "name": "Снежный барсёнок",
+      "rank": "Мастер",
+      "xp": 50000,
+      "model": "models/heroes/21.glb",
+      "status": "missing"
+    }
+  ],
+  "skins": [
+    {
+      "name": "Genesis",
+      "model": "models/skins/genesis.glb",
+      "status": "missing"
+    },
+    {
+      "name": "Cyber",
+      "model": "models/skins/cyber.glb",
+      "status": "missing"
+    },
+    {
+      "name": "Crystal",
+      "model": "models/skins/crystal.glb",
+      "status": "missing"
+    },
+    {
+      "name": "Royal",
+      "model": "models/skins/royal.glb",
+      "status": "missing"
+    },
+    {
+      "name": "Angel",
+      "model": "models/skins/angel.glb",
+      "status": "missing"
+    },
+    {
+      "name": "Shadow",
+      "model": "models/skins/shadow.glb",
+      "status": "missing"
+    }
+  ]
+}

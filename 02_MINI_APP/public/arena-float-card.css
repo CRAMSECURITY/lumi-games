@@ -1,0 +1,21 @@
+/* Floating crystal card. The actual button remains accessible and clickable. */
+#duel-home .arena-create-stage{perspective:850px;margin:20px 5px 19px;padding:8px 0 17px;isolation:isolate;overflow:visible}
+.arena-create-stage::before{content:"";position:absolute;inset:auto 8% 0;height:21px;border-radius:50%;background:radial-gradient(ellipse,#ad54fd65 0%,#6b24bb40 40%,transparent 73%);filter:blur(8px);pointer-events:none;animation:crystalShadow 5s ease-in-out infinite}
+.arena-levitate{position:relative;transform-style:preserve-3d;animation:crystalFloat 5s ease-in-out infinite;isolation:isolate;transform-origin:50% 50%}
+.arena-levitate::before,.arena-levitate::after{content:"";position:absolute;inset:0;clip-path:polygon(0 13px,13px 0,calc(100% - 19px) 0,100% 19px,100% calc(100% - 13px),calc(100% - 13px) 100%,19px 100%,0 calc(100% - 19px));pointer-events:none}
+.arena-levitate::before{transform:translate(1px,9px);background:linear-gradient(115deg,#492473,#a968e8 28%,#211133 55%,#a05de4 85%,#392050);z-index:-2}
+.arena-levitate::after{transform:translateY(4px);background:linear-gradient(140deg,#e1bcff,#7443a7 35%,#3e205c 70%,#dfb1ff);z-index:-1}
+#duel #create.arena-create{min-height:208px;display:flex;align-items:flex-end;padding:22px 18px 22px 19px;clip-path:polygon(0 13px,13px 0,calc(100% - 19px) 0,100% 19px,100% calc(100% - 13px),calc(100% - 13px) 100%,19px 100%,0 calc(100% - 19px));background:linear-gradient(150deg,#d9b3ff 0%,#7341a7 12%,#bd8af0 30%,#503072 58%,#d1a2fc 90%,#684294);color:#fff;box-shadow:none;isolation:isolate}
+#duel #create.arena-create::before{inset:2px;clip-path:polygon(0 12px,12px 0,calc(100% - 18px) 0,100% 18px,100% calc(100% - 12px),calc(100% - 12px) 100%,18px 100%,0 calc(100% - 18px));background:radial-gradient(ellipse at 93% 8%,#ad73ea 0%,transparent 60%),linear-gradient(135deg,#25133e 0%,#35204c 42%,#6b369b 76%,#33194c);z-index:-1}
+#duel #create.arena-create::after{inset:3px;clip-path:polygon(65% 0,100% 0,100% 44%,25% 100%,0 100%,0 86%);background:linear-gradient(140deg,#d9b3ff08,#e7c7ff28 48%,#c68bff08);z-index:-1}
+#duel #create .arena-create-copy{max-width:71%;gap:10px;text-shadow:0 2px 6px #160823}
+#duel #create .arena-create-copy strong{font-size:clamp(25px,7vw,52px);color:#fbf0ff;line-height:.98;letter-spacing:-.055em}
+#duel #create .arena-create-copy small{color:#e1c4f6;font-weight:550;font-size:12px;line-height:1.35}
+#duel #create .arena-create-copy svg{color:#d9a8ff;width:24px;height:24px}
+#duel #create .arena-arrow{background:linear-gradient(145deg,#39214d,#100b1a);color:#f5dcff;filter:drop-shadow(0 2px 1px #0e0716);bottom:17px;right:15px;width:47px;height:47px}
+.arena-levitate .arena-float{width:44%;max-width:230px;right:1%;top:-23px;filter:drop-shadow(3px 11px 6px #150922aa) drop-shadow(0 0 7px #c38df66b);animation:crystalBlade 4.3s ease-in-out infinite;z-index:5}
+@keyframes crystalFloat{0%,100%{transform:translateY(0) rotateX(var(--tilt-x,2deg)) rotateY(var(--tilt-y,-3deg))}50%{transform:translateY(-7px) rotateX(var(--tilt-x,2deg)) rotateY(var(--tilt-y,-3deg))}}
+@keyframes crystalBlade{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+@keyframes crystalShadow{0%,100%{opacity:.9;transform:scaleX(1)}50%{opacity:.55;transform:scaleX(.88)}}
+@media(min-width:650px){#duel #create.arena-create{min-height:260px;padding:30px 28px}.arena-levitate .arena-float{right:7%;top:-30px}#duel #create .arena-create-copy small{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.arena-levitate,.arena-levitate .arena-float,.arena-create-stage::before{animation:none!important;transform:none!important}}

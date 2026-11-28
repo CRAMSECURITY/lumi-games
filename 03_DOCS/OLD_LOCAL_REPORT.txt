@@ -1,0 +1,72 @@
+﻿LUMI LOCAL CHECK
+2026-11-27T14:17:30
+INFO  | Selected Mini App | LUMI_GENESIS_6_CORE
+INFO  | Python | 3.14.10
+PASS  | Source secret patterns | files=49; suspicious files=0; heuristic only
+PASS  | Required bot.py | 
+PASS  | Required lumi_admin.py | 
+PASS  | Required lumi_operations.py | 
+PASS  | Required lumi_daily.py | 
+PASS  | Required lumi_referrals.py | 
+PASS  | Required lumi_friend_quest.py | 
+PASS  | Python syntax | files=25; errors=0
+PASS  | Python test_account_guard_offline.py | exit=0
+PASS  | Python test_admin_block_offline.py | exit=0
+PASS  | Python test_bottom_runtime.py | exit=0
+PASS  | Python test_dating_release.py | exit=0
+PASS  | Python test_founder_event.py | exit=0
+PASS  | Python test_keyboard_k4.py | exit=0
+PASS  | Python test_lumi4_features_offline.py | exit=0
+PASS  | Python test_matches.py | exit=0
+PASS  | Python test_ops_3_8_offline.py | exit=0
+PASS  | Python test_profile_hub.py | exit=0
+PASS  | Python test_profiles.py | exit=0
+PASS  | Python test_sanctions_offline.py | exit=0
+PASS  | Python test_support_offline.py | exit=0
+FAIL  | Python test_teaser_offline.py | exit=1
+FAIL  | Python test_teaser_rotation.py | exit=1
+PASS  | Python test_ux3.py | exit=0
+PASS  | Python test_verification_gate.py | exit=0
+PASS  | JavaScript syntax | files=17; errors=0
+PASS  | Worker tests | exit=0
+PASS  | Installed Python dependency consistency | exit=0
+FAIL  | requirements.txt | presence only
+SKIP  | npm vulnerability audit | no usable registry response; exit=1
+PASS  | Temporary diagnostic tools | exit=0
+SKIP  | Installed Python vulnerability audit | exit=0
+PASS  | UI 390 home | 
+FAIL  | UI 390 collection button | 
+FAIL  | UI 390 21 heroes | 
+FAIL  | UI 390 hero detail | interaction failed
+FAIL  | UI 390 rank filter | interaction failed
+FAIL  | UI 390 six skin selections | interaction failed
+PASS  | UI 390 games navigation | 
+PASS  | UI 390 duel navigation | 
+PASS  | UI 390 no horizontal overflow | 
+PASS  | UI 390 WebGL capability | 
+FAIL  | UI 390 uncaught JS errors | count=1
+PASS  | UI 360 home | 
+FAIL  | UI 360 collection button | 
+FAIL  | UI 360 21 heroes | 
+FAIL  | UI 360 hero detail | interaction failed
+FAIL  | UI 360 rank filter | interaction failed
+FAIL  | UI 360 six skin selections | interaction failed
+PASS  | UI 360 games navigation | 
+PASS  | UI 360 duel navigation | 
+PASS  | UI 360 no horizontal overflow | 
+PASS  | UI 360 WebGL capability | 
+FAIL  | UI 360 uncaught JS errors | count=1
+PASS  | UI 1280 home | 
+FAIL  | UI 1280 collection button | 
+FAIL  | UI 1280 21 heroes | 
+FAIL  | UI 1280 hero detail | interaction failed
+FAIL  | UI 1280 rank filter | interaction failed
+FAIL  | UI 1280 six skin selections | interaction failed
+PASS  | UI 1280 games navigation | 
+PASS  | UI 1280 duel navigation | 
+PASS  | UI 1280 no horizontal overflow | 
+PASS  | UI 1280 WebGL capability | 
+FAIL  | UI 1280 uncaught JS errors | count=1
+SKIP  | Production Telegram, D1, payments, visual quality, actual device FPS | requires separate staging/manual verification
+SKIP  | Skin geometry and clipping | selection test does not validate appearance
+INFO  | Release decision | NOT CERTIFIED; {'PASS': 42, 'FAIL': 21, 'SKIP': 4}
