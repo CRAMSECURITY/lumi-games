@@ -4696,7 +4696,7 @@ async def arena_resolve(callback: CallbackQuery):
     winner, loser, a, b = result
     winner_name = ARENA_HEROES[(a if winner == challenger else b)[0] - 1][0]
     loser_name = ARENA_HEROES[(b if winner == challenger else a)[0] - 1][0]
-    for player in (challenger, defender):
+    for player in (winner, loser):
         message = (f"⚔️ LUMI ARENA · Результат\n\n"
                    f"{winner_name} победил {loser_name}!\n"
                    f"{'Победа! +40 EXP, +30 рейтинга' if player == winner else 'Участие: +10 EXP, −10 рейтинга (минимум 0)'}\n\n"
