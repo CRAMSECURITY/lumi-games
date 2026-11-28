@@ -27,8 +27,72 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install bandit pip-audit
-      - name: Bandit
-        run: bandit -r 01_BOT analytics 04_TOOLS -ll -ii
+      - name: Bandit (full scan and reviewed test gate)
+        run: |
+          bandit -r 01_BOT analytics 04_TOOLS --exit-zero -f json -o "$RUNNER_TEMP/lumi-bandit.json"
+          python - <<'PYTHON'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          # Reviewed medium findings in unchanged offline test files only.
+          # Full-file checksums invalidate the exception after any test source change.
+          reviewed = set("""
+          01_BOT/test_account_guard_offline.py:44:B102:ae75974b89162eabb827a77673ec2be6800254d0ba7d4b46a486fdd767a692c8
+          01_BOT/test_admin_block_offline.py:25:B102:3e9f1894cc089ab29bd8feee9b61a0d825058fa4faf682fbb9aef5a07078a566
+          01_BOT/test_async_performance.py:13:B102:1f36800de13f1e71aaa02b200a20cb602166895e97e8defc271110d14938876a
+          01_BOT/test_bottom_runtime.py:13:B102:5d7cab2238a807741c7271efc6aef40f1e66a69e32fdb9e65fb2842ca7a9922a
+          01_BOT/test_bottom_runtime.py:18:B102:5d7cab2238a807741c7271efc6aef40f1e66a69e32fdb9e65fb2842ca7a9922a
+          01_BOT/test_database_concurrency.py:12:B102:094ed36de98a3fb03b38d448bbff94b8cf8bb83b28cd27d62f046f304898a979
+          01_BOT/test_database_performance.py:19:B102:87c15a6f195d1d862ae335ba35ea4a00dde72b56415631a88af0132f8458a318
+          01_BOT/test_dating_release.py:14:B102:3c4dc4cdc997f6c111d2921365437b94bc8e03163f89d62519d7a8e6f55df515
+          01_BOT/test_founder_event.py:19:B102:13af020409b0e6460b012e01f59471ac6d8fdad60c67eeade4d077fb9dde3119
+          01_BOT/test_keyboard_k4.py:8:B102:0556d21ab862d2407cfd93b172faa0bd1b44026eaf0dd44e5ce1551f55e649a2
+          01_BOT/test_matches.py:8:B102:870f046d03ddb5f449498688de4b857537b9b05465abba4f0728a59924d1f6cc
+          01_BOT/test_miniapp_links.py:14:B102:2464c25e19bf2b85d1a9180c10a15135c1a7971c6f06a4b1ba3aaa94f5a72efa
+          01_BOT/test_payment_security.py:10:B102:e7759b8e833e688469fea05f8e1a14460d3eb25ba3f3e8860b461c8637d2f1f2
+          01_BOT/test_privacy_shield.py:22:B102:e5fa9015463b44768ffeaf9c054c78fc2e6cd51efcff9ed45d27447e40ee4506
+          01_BOT/test_profile_hub.py:8:B102:664bb3f7af7ca62d2447c5de9324e3d8a60d2bb52d2dd328f4f4357b2ae9f0d7
+          01_BOT/test_profile_hub.py:12:B102:664bb3f7af7ca62d2447c5de9324e3d8a60d2bb52d2dd328f4f4357b2ae9f0d7
+          01_BOT/test_profiles.py:24:B102:70dbf2d911df4160b066eefd3e55d5592ccb8b9e21b100f898c732ffd846e529
+          01_BOT/test_sanctions_offline.py:18:B102:44675f58dabe2fb1683b5ff3c7c6a96845468e43ec7a858f72ffc4cb2d5b2d2a
+          01_BOT/test_support_offline.py:16:B102:b000289873c6939c207564580708e081fe91b9703ad59db3d2ce19190d8cd6a9
+          01_BOT/test_system_integrity.py:24:B102:f4e474a63c7798461dd277b4117c33a5b9f72df5fc010c34426aaa7a50664ea5
+          01_BOT/test_teaser_offline.py:13:B102:c0c37bff918417b43372ee373853e31fcef6027a5d08f20a2381831b1b0385ee
+          01_BOT/test_teaser_rotation.py:23:B102:cc71dc2fb604b75d71c7d038a7396ddec99e3d002ead74fde15a120ff14a4488
+          01_BOT/test_trust_safety.py:26:B608:cd9a75a2daa3fbb2486c27793ab60613c252cefa948f95f2ed4e7b9aa72d5684
+          01_BOT/test_ux3.py:8:B102:27f80de6af03398a44e882992892bd5b8558b6ae35a17a8da56cf810f7e281fe
+          01_BOT/test_verification_gate.py:29:B102:ed29a8b1bd56951926b5083de4a0c64bb76566766d42e49c7356e0192ad3fa3a
+          """.split())
+          report = json.loads((Path(os.environ['RUNNER_TEMP']) / 'lumi-bandit.json').read_text(encoding='utf-8'))
+          if report.get('errors') != [] or not isinstance(report.get('results'), list) or not report.get('metrics', {}).get('_totals', {}).get('loc'):
+              raise SystemExit('Bandit scan incomplete or failed; refusing to pass.')
+          blocked = 0
+          accepted = 0
+          low = 0
+          for item in report['results']:
+              path = Path(item['filename']).as_posix().removeprefix('./')
+              level = item['issue_severity']
+              rule = item['test_id']
+              line = item['line_number']
+              label = f'{path}:{line} {rule} {level}'
+              if level == 'LOW':
+                  low += 1
+                  print(f'REVIEW (low): {label}')
+                  continue
+              if level == 'MEDIUM' and path.startswith('01_BOT/test_'):
+                  source = Path(path).read_text(encoding='utf-8')
+                  digest = hashlib.sha256(source.encode('utf-8')).hexdigest()
+                  if f'{path}:{line}:{rule}:{digest}' in reviewed:
+                      accepted += 1
+                      print(f'REVIEWED TEST (medium): {label}')
+                      continue
+              blocked += 1
+              print(f'BLOCK: {label}')
+          print(f'Bandit summary: {accepted} reviewed test findings, {low} low findings, {blocked} blocking findings')
+          raise SystemExit(1 if blocked else 0)
+          PYTHON
       - name: Python dependencies (resolved ranges)
         if: ${{ !cancelled() }}
         run: pip-audit -r 01_BOT/requirements.txt --progress-spinner off
