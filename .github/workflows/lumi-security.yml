@@ -1,0 +1,60 @@
+name: LUMI Security Audit
+on:
+  push:
+    branches: [release-026-6]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Gitleaks (history)
+        run: docker run --rm --network none -v "$PWD:/repo:ro" ghcr.io/gitleaks/gitleaks:v8.30.1 git /repo --redact=100 --no-banner
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install bandit pip-audit
+      - name: Bandit
+        run: bandit -r 01_BOT analytics 04_TOOLS -ll -ii
+      - name: Python dependencies (resolved ranges)
+        if: ${{ !cancelled() }}
+        run: pip-audit -r 01_BOT/requirements.txt --progress-spinner off
+  javascript:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: npm dependency audit
+        working-directory: 02_MINI_APP
+        run: npm audit --audit-level=moderate
+  semgrep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install semgrep
+      - name: Static security analysis
+        run: semgrep scan --config p/python --config p/javascript --metrics=off --error 01_BOT 02_MINI_APP analytics 04_TOOLS
